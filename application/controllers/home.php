@@ -16,10 +16,7 @@ class Home extends Controller
      */
     public function index()
     {
-        // load views
-        require APP . 'views/_templates/header.php';
-        require APP . 'views/home/index.php';
-        require APP . 'views/_templates/footer.php';
+        $this->renderView('home/index');
     }
 
     /**
@@ -29,10 +26,7 @@ class Home extends Controller
      */
     public function exampleOne()
     {
-        // load views
-        require APP . 'views/_templates/header.php';
-        require APP . 'views/home/example_one.php';
-        require APP . 'views/_templates/footer.php';
+        $this->renderView('home/example_one');
     }
 
     /**
@@ -42,9 +36,6 @@ class Home extends Controller
      */
     public function exampleTwo()
     {
-        // load views
-        require APP . 'views/_templates/header.php';
-        require APP . 'views/home/example_two.php';
-        require APP . 'views/_templates/footer.php';
+        $this->renderView('home/example_two');
     }
 }

@@ -17,7 +17,7 @@
     <div>
         <h3>Amount of songs (data from second model)</h3>
         <div>
-            <?php echo $amount_of_songs; ?>
+            <?php echo $this->amount_of_songs; ?>
         </div>
         <h3>Amount of songs (via AJAX)</h3>
         <div>
@@ -37,7 +37,7 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($songs as $song) { ?>
+            <?php foreach ($this->songs as $song) { ?>
                 <tr>
                     <td><?php if (isset($song->id)) echo htmlspecialchars($song->id, ENT_QUOTES, 'UTF-8'); ?></td>
                     <td><?php if (isset($song->artist)) echo htmlspecialchars($song->artist, ENT_QUOTES, 'UTF-8'); ?></td>

@@ -77,6 +77,8 @@ and [the same for Ubuntu 12.04 LTS](http://www.dev-metal.com/setup-basic-lamp-st
 
 A very early documentation can be found on [php-mini.com/documentation](http://php-mini.com/documentation/).
 
+TODO change this to latest view changes
+
 ## Server configs for
 
 ### nginx
@@ -150,7 +152,7 @@ will pass `17` as a parameter to it.
 
 Self-explaining, right ?
 
-#### Showing a view
+#### Showing a view TODO
 
 Let's look at the exampleOne()-method in the home-controller (application/controllers/home.php): This simply shows
 the header, footer and the example_one.php page (in views/home/). By intention as simple and native as possible.

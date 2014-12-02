@@ -21,10 +21,11 @@ class Songs extends Controller
         $songs = $this->model->getAllSongs();
         $amount_of_songs = $this->model->getAmountOfSongs();
 
-       // load views. within the views we can echo out $songs and $amount_of_songs easily
-        require APP . 'views/_templates/header.php';
-        require APP . 'views/songs/index.php';
-        require APP . 'views/_templates/footer.php';
+       // render views. within the view "songs" will be available as $this->songs for example
+        $this->renderView('songs/index', array(
+            'songs' => $songs,
+            'amount_of_songs' => $amount_of_songs
+        ));
     }
 
     /**
@@ -83,10 +84,10 @@ class Songs extends Controller
             // in a real application we would also check if this db entry exists and therefore show the result or
             // redirect the user to an error page or similar
 
-            // load views. within the views we can echo out $song easily
-            require APP . 'views/_templates/header.php';
-            require APP . 'views/songs/edit.php';
-            require APP . 'views/_templates/footer.php';
+            // render views. within the view "songs" will be available as $this->songs for example
+            $this->renderView('songs/edit', array(
+                'song' => $song
+            ));
         } else {
             // redirect user to songs index page (as we don't have a song_id)
             header('location: ' . URL . 'songs/index');

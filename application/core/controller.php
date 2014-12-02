@@ -47,4 +47,15 @@ class Controller
         // create new "model" (and pass the database connection)
         $this->model = new Model($this->db);
     }
+
+    /**
+     * Loads the specified view file and passes variable to it
+     * @param $view_path
+     * @param array $data
+     */
+    public function renderView($view_path, $data = array())
+    {
+        require APP . '/core/view.php';
+        $this->view = new View($view_path, $data);
+    }
 }
