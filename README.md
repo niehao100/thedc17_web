@@ -1,3 +1,10 @@
+#THEDC17网站仓库
+## 任务规划
+* 8月完成登陆和文件下载模块
+* 开学前完成论坛(通知)和组队功能
+* 十一左右完成网站的前端美化并上线
+
+
 [![MINI - A naked barebone PHP application](_install/mini.png)](http://www.php-mini.com)
 
 # MINI
