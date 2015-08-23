@@ -1,28 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
+    <title>第17届电设比赛</title>
     <meta charset="utf-8">
-    <title>MINI</title>
-    <meta name="description" content="">
+    <meta name="description" content="thedc17">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="http://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+     
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"></script>
+    <script src="<?php echo URL; ?>js/application.js"></script>
+    
 
-    <!-- JS -->
-    <!-- please note: The JavaScript files are loaded in the footer to speed up page construction -->
-    <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
-
-    <!-- CSS -->
-    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+    
 </head>
 <body>
-    <!-- logo -->
-    <div class="logo">
-        MINI
-    </div>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+   <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" 
+         data-target="#example-navbar-collapse">
+         <span class="sr-only">切换导航</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+      </button>
+   
+      <a class="navbar-brand" href="<?php echo URL; ?>"><strong>第17届电设比赛</strong></a>
+   </div>
+<div class="collapse navbar-collapse" id="example-navbar-collapse">
+      
+<?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
+    <ul class="nav navbar-nav navbar-right">
+         <li><a data-toggle="modal" href="#registermodal">注册</a></li>
+         <li><a data-toggle="modal" href="#loginmodal">登录</a></li>
+      </ul>
+<?php }else {?>
+ <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+           
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               <?php echo $_SESSION['username'];?> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">修改密码</a></li>
+               <li><a href="<?php echo URL."user/logout"; ?>">退出</a></li>
+            </ul>
+         </li>
+         </ul>
+       <div class="navbar-right">
+      <p class="navbar-text">欢迎，</p>
+   </div>
+<?php }?>
 
-    <!-- navigation -->
-    <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL; ?>home/exampleone">subpage</a>
-        <a href="<?php echo URL; ?>home/exampletwo">subpage 2</a>
-        <a href="<?php echo URL; ?>songs">songs</a>
     </div>
+</nav>   
+
+<div class="modal fade" id="registermodal" data-backdrop="false" tabindex="-1" role="dialog" >
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title">
+               注册用户
+            </h4>
+         </div>
+         <div class="modal-body">
+         
+<!-- 注册表单  -->
+ <form class="form-horizontal" id="registerform" role="form" action="<?php echo URL; ?>user/register" method="post">
+   <div class="form-group">
+      <label for="nickname" class="col-sm-2 control-label">昵称</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="text" class="form-control" id="nickname" name="nickname"
+            placeholder="长度3~10">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="password" class="col-sm-2 control-label">密码</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="password" class="form-control" id="password" name="password"
+            placeholder="至少6位">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="repassword" class="col-sm-2 control-label">确认密码</label>
+      <div class="col-sm-10">
+         <div class="input-group">
+         <input type="password" class="form-control" id="repassword" name="repassword"
+            placeholder="至少6位">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="realname" class="col-sm-2 control-label">真实姓名</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="text" class="form-control" id="realname" name="realname">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="class" class="col-sm-2 control-label">班级</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="text" class="form-control" id="class" name="class">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="cellphone" class="col-sm-2 control-label">手机</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="text" class="form-control" id="cellphone" name="cellphone">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="mailaddress" class="col-sm-2 control-label">邮箱</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="email"
+              class="form-control" id="mailaddress" name="mailaddress">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-send"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="vc" class="col-sm-2 control-label">验证码</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="text"
+              class="form-control" id="vc" name="vc">
+			<span class="input-group-addon"><img  title="点击刷新" src="<?php echo URL; ?>captcha" align="absbottom" onclick="this.src='<?php echo URL; ?>captcha/index/'+Math.random();"></img></span>
+		     <div style='width: 20px'></div>
+		</div>
+      </div>
+   </div>
+   <div class="modal-footer ">
+      
+         <button type="submit" name="register-submit" class="btn btn-primary">注册</button>
+
+   </div>
+</form>
+         </div>
+         
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+
+
+
+
+<div class="modal fade" id="loginmodal" data-backdrop="false" tabindex="-1" role="dialog" >
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title">
+               登录
+            </h4>
+         </div>
+         <div class="modal-body">
+         
+<!-- 注册表单  -->
+ <form class="form-horizontal" id="loginform" role="form" action="<?php echo URL; ?>user/login" method="post">
+
+  <div id="loginAlert" class="alert alert-warning fade in hidden ">
+
+   <strong>用户不存在或密码错误！</strong>
+
+</div>
+   <div class="form-group">
+      <label for="login-nickname" class="col-sm-2 control-label">昵称/邮箱</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="text" class="form-control" id="login-nickname" name="login-nickname">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="login-password" class="col-sm-2 control-label">密码</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="password" class="form-control" id="login-password" name="login-password">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+<div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+         <div class="checkbox">
+            <label>
+               <input id="rememberme" name="rememberme" type="checkbox"> 请记住我
+            </label>
+         </div>
+      </div>
+   </div>
+   <div class="modal-footer ">
+      
+         <button id="login" type="button" class="btn btn-primary">登录</button>
+
+   </div>
+</form>
+         </div>
+         
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->

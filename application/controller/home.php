@@ -17,6 +17,14 @@ class Home extends Controller
     public function index()
     {
         // load views
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_COOKIE['autologin']) && $_SESSION['login']!=true)
+        {
+            header("Location:".URL.'/user/login'); 
+            exit;
+        }
         require APP . 'view/_templates/header.php';
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/footer.php';
