@@ -9,8 +9,9 @@ class userModel
     {
         try {
             $this->db = $db;
-            $query = $this->db->prepare("SET NAMES UTF8");
+            $query = $this->db->prepare("set names 'utf8'");
             $query->execute();
+                     
         } catch (PDOException $e) {
             exit('Database connection could not be established.');
         }
@@ -54,6 +55,10 @@ class userModel
             $_SESSION['username']=$res[0];
             $_SESSION['type']=$res[1];
             $_SESSION['pass']=$res[2];
+            $sql = "update user set user_lastlogin='".time()."' where user_nickname=:nick";
+            $parameters = array(':nick' => $nickname);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
             return true;
         }else{
             $_SESSION['login']=false;
@@ -91,12 +96,12 @@ class userModel
     }
     public function registeruser($nickname,$pass,$realname,$class,$cellphone,$email)
     {
-        $sql = "SELECT register_user(:nickname,:pass,:type,:realname,:class,:cellphone,:email)";
+        $sql = "INSERT INTO `user`(`user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`) VALUES(:nickname,password(:pass),:type,:realname,:class,:cellphone,:email)";
         $query = $this->db->prepare($sql);
         $parameters = array(':nickname' => $nickname, ':pass' => $pass, ':type' => 0, 
             ':realname' => $realname,':class'=>$class,':cellphone'=>$cellphone,':email'=>$email);
         $query->execute($parameters);
-        return $query->fetch(PDO::FETCH_NUM)[0]>0?true:false;
+        return true;
     }
 
 }

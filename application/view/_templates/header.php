@@ -26,6 +26,7 @@ if (!isset($_SESSION)) {
 }
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container">
    <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" 
          data-target="#example-navbar-collapse">
@@ -49,7 +50,7 @@ if (!isset($_SESSION)) {
     <li class="dropdown">
            
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-               <?php echo $_SESSION['username'];?> <b class="caret"></b>
+              欢迎， <?php echo $_SESSION['username'];?> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                 <li><a href="#">修改密码</a></li>
@@ -58,10 +59,10 @@ if (!isset($_SESSION)) {
          </li>
          </ul>
        <div class="navbar-right">
-      <p class="navbar-text">欢迎，</p>
    </div>
 <?php }?>
 
+    </div>
     </div>
 </nav>   
 
@@ -161,7 +162,7 @@ if (!isset($_SESSION)) {
    </div>
    <div class="modal-footer ">
       
-         <button type="submit" name="register-submit" class="btn btn-primary">注册</button>
+         <button type="submit" id="registersubmit" name="registersubmit" class="btn btn-primary">注册</button>
 
    </div>
 </form>
@@ -237,7 +238,7 @@ if (!isset($_SESSION)) {
 
 <div class="container">
    <div class="row" >
-      <div class="col-xs-3 col-md-offset-0" >
+      <div class="col-xs-12 col-sm-3 col-lg-3 col-md-3" >
          
          
          <div class="list-group">
@@ -246,9 +247,17 @@ if (!isset($_SESSION)) {
         通知
       </h4>
    </span>
-   <a href="<?php echo URL;?>" class="list-group-item">
+   
+   <?php if (isset($_SESSION['type']) && $_SESSION['type']=='1'){?>
+   <a href="<?php echo URL;?>file/index" class="list-group-item">
       <p class="list-group-item-text">
-         &nbsp;&nbsp;&nbsp;资料列表<span class="badge pull-right">500</span>
+         &nbsp;&nbsp;&nbsp;上传资料
+      </p>
+   </a>
+   <?php }?>
+   <a href="<?php echo URL;?>file/listall" class="list-group-item">
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;资料列表
       </p>
    </a>
    <a href="<?php echo URL;?>" class="list-group-item">
@@ -281,10 +290,8 @@ if (!isset($_SESSION)) {
 </div>
 
       </div>
-    
-    <div class="col-xs-8 col-md-offset-0" 
-         style="background-color: #dedef8;box-shadow: 
-         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+ <!--          style="background-color: #dedef8;box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" -->
+    <div class="col-xs-12 hidden-xs col-sm-8 col-lg-8 col-xs-8" >
          
       
    

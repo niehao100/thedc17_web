@@ -44,7 +44,9 @@ class Controller
     public function loadModel()
     {
         require APP . 'model/userModel.php';
+        require APP . 'model/fileModel.php';
         // create new "model" (and pass the database connection)
         $this->usermodel = new userModel($this->db);
+        $this->filemodel = new fileModel($this->db);
     }
 }

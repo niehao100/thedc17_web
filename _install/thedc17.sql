@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-24 03:45:27
+-- Generation Time: 2015-08-24 18:59:11
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -68,7 +68,14 @@ CREATE TABLE IF NOT EXISTS `file` (
   `file_owner` varchar(50) NOT NULL,
   `file_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is invalid',
   PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `file`
+--
+
+INSERT INTO `file` (`file_id`, `file_name`, `file_comment`, `file_size`, `file_uploadtime`, `file_owner`, `file_valid`) VALUES
+(3, '1440430544_jqcool.net-bootstrapvalidator.zip', '啊东方蔷薇', 719344, '2015-08-24 15:35:44', 'hzh', 1);
 
 -- --------------------------------------------------------
 
@@ -91,16 +98,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `user_nickname` (`user_nickname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- 转存表中的数据 `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`) VALUES
-(1, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '???', '?45', '13522200713', 'hzh_1996@sina.com', '2015-08-23 03:18:54', '2015-08-23 11:18:54', NULL),
-(3, 'asd', '*960FECDC3DF94390AE7E6883F74FBD4DD7BF9694', 0, 'as', '?', '13522', 'h@d', '2015-08-23 08:01:14', '2015-08-23 16:01:14', NULL),
-(4, 'asdf', '*960FECDC3DF94390AE7E6883F74FBD4DD7BF9694', 0, 'f', 'f', '2', 'f@f', '2015-08-23 08:06:48', '2015-08-23 16:06:48', NULL);
+(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '0000-00-00 00:00:00', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

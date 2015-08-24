@@ -1,8 +1,69 @@
 $(document).ready(function() {
-	
+	var modalstate =0; 
+	$("[data-toggle='popover']").popover();
 	// $("#loginAlert").alert('close');
+	$('#fileupload').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	inputfile: {
+                validators: {
+                    file: {
+                        maxSize: 10 * 1024 * 1024,   // 10 MB
+                        message: '文件超过10MB'
+                    }
+                }
+            }
+        }
+    });
+	
+	document.onkeydown = function (e) { 
+		var theEvent = window.event || e; 
+		var code = theEvent.keyCode || theEvent.which; 
+		if (code == 13) { 
+			if (modalstate==1)
+				{
+				values = $("#registerform").serializeArray(); 
+			    var values, index; 
+			    for (index = 0; index < values.length; ++index) 
+			    { 
+			    if (values[index].type != "submit") 
+			    { 
+			    $("#"+values[index].name).blur();
+			    	
+			    } 
+			    } 
+			    //alert($('#registerform').bootstrapValidator("isValid"));
+			    var bootstrapValidator = $('#registerform').data('bootstrapValidator');
+			if (true==bootstrapValidator.isValid())
+				{
+					("#registerform").submit();
+				}
+	       
+				
+				}else if(modalstate==2)
+					{
 
+						$("#login").click();
+
+					}
+		
+		return false;
+		} 
+		} 
 	$("#login").click(function(){
+		var bootstrapValidator = $('#loginform').data('bootstrapValidator');
+        bootstrapValidator.enableFieldValidators("loginnickname",true)
+        			.validateField("loginnickname");
+        bootstrapValidator.enableFieldValidators("loginpassword",true)
+		.validateField("loginpassword");
+        if (false==bootstrapValidator.isValid())
+        	{
+        	return false;
+        	}
 		  $.post(window.location.href+'/user/login',
 		  {
 		    nickname:$("#loginnickname").val(),
@@ -39,10 +100,18 @@ $(document).ready(function() {
 		});
 	
 	$('#registermodal').on('hide.bs.modal', function () {
+		modalstate=0;
 		$('#registerform').bootstrapValidator('resetForm','true');});
 	
 	$('#loginmodal').on('hide.bs.modal', function () {
+		modalstate=0;
 		$('#loginform').bootstrapValidator('resetForm','true');});
+	
+	$('#registermodal').on('shown.bs.modal', function () {
+		modalstate=1;});
+	
+	$('#loginmodal').on('shown.bs.modal', function () {
+		modalstate=2;});
 	
 	$('#loginform').bootstrapValidator({
         message: 'This value is not valid',
@@ -58,8 +127,8 @@ $(document).ready(function() {
                         message: '昵称不能为空'
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: '用户名只能为英文、数字、下划线'
+                        regexp: /^[^%'"?*,]+$/,
+                        message: '用户名不能出现特殊字符'
                     }
                 }
             },
@@ -93,8 +162,8 @@ $(document).ready(function() {
                         message: '昵称长度为3~10之间'
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: '用户名只能为英文、数字、下划线'
+                        regexp: /^[^%'"?*,]+$/,
+                        message: '用户名不能出现特殊字符'
                     },
                     remote: {
 		                message: '用户名已存在',
@@ -191,11 +260,6 @@ $(document).ready(function() {
     .enableFieldValidators('mailaddress',false)
     .enableFieldValidators('vc',false);
     
-    $("#nickname").blur(function(){
-    	var bootstrapValidator = $('#registerform').data('bootstrapValidator');
-        bootstrapValidator.enableFieldValidators('nickname',true)
-        			.validateField('nickname');
-    	});
     
     values = $("#registerform").serializeArray(); 
     var values, index; 
