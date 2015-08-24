@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-23 16:38:45
+-- Generation Time: 2015-08-24 03:45:27
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -52,6 +52,23 @@ end if;
 end$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `file`
+--
+
+CREATE TABLE IF NOT EXISTS `file` (
+  `file_id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(100) NOT NULL,
+  `file_comment` mediumtext NOT NULL,
+  `file_size` int(11) NOT NULL,
+  `file_uploadtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `file_owner` varchar(50) NOT NULL,
+  `file_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is invalid',
+  PRIMARY KEY (`file_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

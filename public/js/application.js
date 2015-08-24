@@ -5,8 +5,8 @@ $(document).ready(function() {
 	$("#login").click(function(){
 		  $.post(window.location.href+'/user/login',
 		  {
-		    nickname:$("#login-nickname").val(),
-		    password:$("#login-password").val(),
+		    nickname:$("#loginnickname").val(),
+		    password:$("#loginpassword").val(),
 		    rememberme:document.getElementById('rememberme').checked==true?'1':'0'
 		  },
 		  function(data,status){
@@ -38,12 +38,41 @@ $(document).ready(function() {
 		  });
 		});
 	
-	$('#registermodal').on('hidden.bs.modal', function () {
-		$('#registerform')[0].reset();});
+	$('#registermodal').on('hide.bs.modal', function () {
+		$('#registerform').bootstrapValidator('resetForm','true');});
 	
-	$('#loginmodal').on('hidden.bs.modal', function () {
-		window.location.href=window.location.href;});
+	$('#loginmodal').on('hide.bs.modal', function () {
+		$('#loginform').bootstrapValidator('resetForm','true');});
 	
+	$('#loginform').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	loginnickname:{
+                validators: {
+                    notEmpty: {
+                        message: '昵称不能为空'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: '用户名只能为英文、数字、下划线'
+                    }
+                }
+            },
+            loginpassword:{
+            	validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    }
+                }
+            }
+        }
+	});
+            
     $('#registerform').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -96,11 +125,11 @@ $(document).ready(function() {
                         regexp: /^[0-9]+$/,
                         message: '只能为数字'
                     },
- /*                   stringLength: {
+                    stringLength: {
                         min: 11,
                         max: 11,
                         message: '长度为11'
-                    }*/
+                    }
                 }
             },
             mailaddress: {
@@ -118,13 +147,9 @@ $(document).ready(function() {
                     notEmpty: {
                         message: '密码不能为空'
                     },
-                    identical:{
-                    	message:'密码输入不同',
-                    	field:'repassword'
-                    },
-                    different:{
-                    	message:'密码不能与用户名相同',
-                    	field:'nickname'
+                    stringLength: {
+                        min: 6,
+                        message: '长度至少为6'
                     }
                 }
             },
@@ -137,10 +162,7 @@ $(document).ready(function() {
                     	message:'密码输入不同',
                     	field:'password'
                     },
-                    different:{
-                    	message:'密码不能与用户名相同',
-                    	field:'nickname'
-                    }
+                    
             	}
             },
             vc:{
@@ -156,4 +178,38 @@ $(document).ready(function() {
             }
         }
     });
+    
+    // Get plugin instance
+    var bootstrapValidator = $('#registerform').data('bootstrapValidator');
+    // and then call method
+    bootstrapValidator.enableFieldValidators('nickname',false)
+    .enableFieldValidators('password',false)
+    .enableFieldValidators('repassword',false)
+    .enableFieldValidators('realname',false)
+    .enableFieldValidators('class',false)
+    .enableFieldValidators('cellphone',false)
+    .enableFieldValidators('mailaddress',false)
+    .enableFieldValidators('vc',false);
+    
+    $("#nickname").blur(function(){
+    	var bootstrapValidator = $('#registerform').data('bootstrapValidator');
+        bootstrapValidator.enableFieldValidators('nickname',true)
+        			.validateField('nickname');
+    	});
+    
+    values = $("#registerform").serializeArray(); 
+    var values, index; 
+    for (index = 0; index < values.length; ++index) 
+    { 
+    if (values[index].type != "submit") 
+    { 
+    $("#"+values[index].name).blur(function(){
+    	var bootstrapValidator = $('#registerform').data('bootstrapValidator');
+        bootstrapValidator.enableFieldValidators(this.id,true)
+        			.validateField(this.id);
+        
+    	});
+    } 
+    } 
+    
 });

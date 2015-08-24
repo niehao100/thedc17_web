@@ -197,19 +197,19 @@ if (!isset($_SESSION)) {
 
 </div>
    <div class="form-group">
-      <label for="login-nickname" class="col-sm-2 control-label">昵称/邮箱</label>
+      <label for="loginnickname" class="col-sm-2 control-label">昵称/邮箱</label>
       <div class="col-sm-10">
       <div class="input-group">
-         <input type="text" class="form-control" id="login-nickname" name="login-nickname">
+         <input type="text" class="form-control" id="loginnickname" name="loginnickname">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 		</div>
       </div>
    </div>
    <div class="form-group">
-      <label for="login-password" class="col-sm-2 control-label">密码</label>
+      <label for="loginpassword" class="col-sm-2 control-label">密码</label>
       <div class="col-sm-10">
       <div class="input-group">
-         <input type="password" class="form-control" id="login-password" name="login-password">
+         <input type="password" class="form-control" id="loginpassword" name="loginpassword">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 		</div>
       </div>
@@ -234,3 +234,57 @@ if (!isset($_SESSION)) {
          </div>
       </div><!-- /.modal-content -->
 </div><!-- /.modal -->
+
+<div class="container">
+   <div class="row" >
+      <div class="col-xs-3 col-md-offset-0" >
+         
+         
+         <div class="list-group">
+   <span class="list-group-item active">
+      <h4 class="list-group-item-heading">
+        通知
+      </h4>
+   </span>
+   <a href="<?php echo URL;?>" class="list-group-item">
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;资料列表<span class="badge pull-right">500</span>
+      </p>
+   </a>
+   <a href="<?php echo URL;?>" class="list-group-item">
+
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;重要消息<span class="badge pull-right">50</span>
+      </p>
+   </a>
+</div>
+<div class="list-group">
+   <span class="list-group-item active">
+      <h4 class="list-group-item-heading">
+        论坛
+      </h4>
+   </span>
+   <a href="<?php echo URL;?>" class="list-group-item">
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;战事汇报
+      </p>
+     
+   </a>
+   <a href="<?php echo URL;?>" class="list-group-item">
+      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;吐槽灌水</p>
+      
+   </a>
+   <a href="<?php echo URL;?>" class="list-group-item">
+      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;平台报错</p>
+      
+   </a>
+</div>
+
+      </div>
+    
+    <div class="col-xs-8 col-md-offset-0" 
+         style="background-color: #dedef8;box-shadow: 
+         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         
+      
+   
