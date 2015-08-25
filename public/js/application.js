@@ -73,8 +73,9 @@ $(document).ready(function() {
 						$("#login").click();
 						return false;
 
-					}else if(modalstate==0){
-						
+					}else if(modalstate==3){
+						$("#changesubmit").click();
+						return false;
 					}
 		
 		
@@ -130,9 +131,16 @@ $(document).ready(function() {
 		modalstate=0;
 		$('#registerform').bootstrapValidator('resetForm','true');});
 	
+	$('#changemodal').on('hide.bs.modal', function () {
+		modalstate=0;
+		$('#registerform').bootstrapValidator('resetForm','true');});
+	
 	$('#loginmodal').on('hide.bs.modal', function () {
 		modalstate=0;
 		window.location.href=window.location.href;});
+	
+	$('#changemodal').on('shown.bs.modal', function () {
+		modalstate=3;$("#oldpass").focus();});
 	
 	$('#registermodal').on('shown.bs.modal', function () {
 		modalstate=1;$("#nickname").focus();});
