@@ -1,5 +1,5 @@
 <table class="table table-striped">
-   <caption>共<?php if($res!=null){echo count($res);}else{echo '0';}?>个文件</caption>
+   <caption>共<?php if(isset($res) && $res!=null){echo count($res);}else{echo '0';}?>个文件</caption>
    <thead>
       <tr>
          <th>#</th>
@@ -11,7 +11,7 @@
          <?php }?>
       </tr>
    </thead>
-   <?php if($res!=null){?>
+   <?php if(isset($res) && $res!=null){?>
    <tbody>
    <?php for($i=0;$i<count($res);++$i){ if ($res[$i]['file_valid']=='1'){?>
    <tr><a >
