@@ -11,6 +11,7 @@ class Controller
      * @var null Model
      */
     public $model = null;
+    
 
     /**
      * Whenever controller is created, open a database connection too and load "the model".

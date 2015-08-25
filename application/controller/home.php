@@ -26,8 +26,18 @@ class Home extends Controller
             exit;
         }
         require APP . 'view/_templates/header.php';
+        if (isset($_SESSION['status'])&& $_SESSION['status']!="")
+        {
+                require APP . 'view/user/'.$_SESSION['status'].'.php';
+                $_SESSION['status']="";
+        }
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/middle.php';
+        if (isset($_SESSION['status'])&& $_SESSION['status']!="")
+        {
+            require APP . 'view/user/'.$_SESSION['status'].'.php';
+            $_SESSION['status']="";
+        }
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/footer.php';
     }

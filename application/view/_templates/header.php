@@ -53,7 +53,7 @@ if (!isset($_SESSION)) {
               欢迎， <?php echo $_SESSION['username'];?> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">修改密码</a></li>
+                <li><a data-toggle="modal" href="#changemodal">修改密码</a></li>
                <li><a href="<?php echo URL."user/logout"; ?>">退出</a></li>
             </ul>
          </li>
@@ -236,6 +236,63 @@ if (!isset($_SESSION)) {
       </div><!-- /.modal-content -->
 </div><!-- /.modal -->
 
+
+<div class="modal fade" id="changemodal" data-backdrop="false" tabindex="-1" role="dialog" >
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title">
+               修改密码
+            </h4>
+         </div>
+         <div class="modal-body">
+         
+<!-- 注册表单  -->
+ <form class="form-horizontal" id="changeform" role="form" action="<?php echo URL; ?>user/changepass" method="post">
+   <div class="form-group">
+      <label for="oldpass" class="col-sm-2 control-label">旧密码</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="password" class="form-control" id="oldpass" name="oldpass">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="newpass" class="col-sm-2 control-label">新密码</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="password" class="form-control" id="newpass" name="newpass">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="renewpass" class="col-sm-2 control-label">重复新密码</label>
+      <div class="col-sm-10">
+      <div class="input-group">
+         <input type="password" class="form-control" id="renewpass" name="renewpass">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		</div>
+      </div>
+   </div>
+
+   <div class="modal-footer ">
+      
+         <button id="changesubmit" name="changesubmit" type="submit" class="btn btn-primary">提交</button>
+
+   </div>
+</form>
+         </div>
+         
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+
 <div class="container">
    <div class="row" >
       <div class="col-xs-12 col-sm-3 col-lg-3 col-md-3" >
@@ -299,6 +356,6 @@ if (!isset($_SESSION)) {
       </div>
  <!--          style="background-color: #dedef8;box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" -->
     <div class="col-xs-12 hidden-xs col-sm-8 col-lg-8 col-xs-8" >
-         
+        
       
    

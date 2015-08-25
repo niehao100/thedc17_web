@@ -91,19 +91,39 @@ class User extends Controller
     {
         if (!isset($_SESSION)) {
         session_start();
-    }
-       session_destroy();
+        }
+       $_SESSION['login']=false;
        setcookie("autologin","",time()-10000,substr(URL_SUB_FOLDER,0,-1));
        header("location:".URL);
     }
-
+    public function changepass()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if ($_POST['newpass']!=$_POST['renewpass'])
+        {
+            $_SESSION['status']="change_fail";
+            header("location:".URL);
+        }
+        if ($this->usermodel->changepass($_POST['oldpass'],$_POST['newpass']))
+        {
+            $_SESSION['status']="change_success";
+            header("location:".URL);
+        }else{
+            $_SESSION['status']="change_fail";
+            header("location:".URL);
+        }
+        
+    }
     public function login()
     {
         if (!isset($_SESSION)) {
             session_start();
         }
-        if (isset($_COOKIE['autologin']))
+        if (isset($_COOKIE['autologin'])&&$_COOKIE['autologin']!="")
         {
+            
             if ($this->usermodel->checkautologin($_COOKIE['autologin']))
             {
                 header("Location:".URL);

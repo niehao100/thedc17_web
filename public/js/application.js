@@ -38,7 +38,8 @@ $(document).ready(function() {
 			    var bootstrapValidator = $('#registerform').data('bootstrapValidator');
 			if (true==bootstrapValidator.isValid())
 				{
-					("#registerform").submit();
+					$("#registerform").submit();
+					$('#registermodal').modal('hide');
 				}
 	})
 	document.onkeydown = function (e) { 
@@ -61,7 +62,8 @@ $(document).ready(function() {
 			    var bootstrapValidator = $('#registerform').data('bootstrapValidator');
 			if (true==bootstrapValidator.isValid())
 				{
-					("#registerform").submit();
+					$("#registerform").submit();
+					$('#registermodal').modal('hide');
 				}
 	       
 			return false;
@@ -111,7 +113,8 @@ $(document).ready(function() {
 		    			date.setTime(date.getTime()-10000); 
 		    			document.cookie="autologin="+obj.cookie+";expires="+date.toGMTString(); 
 		    		}
-		    		 window.location.href=window.location.href;
+		    		$('#loginmodal').modal('hide');
+		    		window.location.reload(); 
 		    	}else{
 		    		var date=new Date(); 
 	    			date.setTime(date.getTime()-10000); 
@@ -165,7 +168,55 @@ $(document).ready(function() {
             }
         }
 	});
-    
+	
+	$('#changeform').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	oldpass:{
+                validators: {
+                    notEmpty: {
+                        message: '不能为空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        message: '长度至少为6'
+                    }
+                }
+            },
+            newpass:{
+            	validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        message: '长度至少为6'
+                    }
+                }
+            },
+            renewpass:{
+            	validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    identical:{
+                    	message:'密码输入不同',
+                    	field:'newpass'
+                    },
+                    stringLength: {
+                        min: 6,
+                        message: '长度至少为6'
+                    }
+                }
+            }
+        }
+	});
+	
 	$('#messageupload').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -280,7 +331,7 @@ $(document).ready(function() {
                     identical:{
                     	message:'密码输入不同',
                     	field:'password'
-                    },
+                    }
                     
             	}
             },

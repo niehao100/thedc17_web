@@ -29,6 +29,22 @@ class userModel
     /**
      * Get all songs from database
      */
+    public function changepass($oldpass,$newpass)
+    {
+        $sql = "SELECT count(*) FROM user where user_nickname=:nickname and user_pass=password(:pass)";
+        $parameters = array(":nickname" => $_SESSION['username'],":pass"=>$oldpass);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        if  ($query->fetch(PDO::FETCH_NUM)[0]==0)
+        {
+            return false;
+        }
+        $sql = "update user set user_pass=password(:newpass) where user_nickname=:nickname";
+        $parameters = array(":nickname" => $_SESSION['username'],":newpass"=>$newpass);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        return true;
+    }
     public function isUserExist($nickname)
     {
         $sql = "SELECT count(*) FROM user where user_nickname=:nickname";
