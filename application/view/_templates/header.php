@@ -226,7 +226,7 @@ if (!isset($_SESSION)) {
    </div>
    <div class="modal-footer ">
       
-         <button id="login" type="button" class="btn btn-primary">登录</button>
+         <button id="login" name="login" type="button" class="btn btn-primary">登录</button>
 
    </div>
 </form>
@@ -255,15 +255,22 @@ if (!isset($_SESSION)) {
       </p>
    </a>
    <?php }?>
+   <?php if (isset($_SESSION['type']) && $_SESSION['type']=='1'){?>
+   <a href="<?php echo URL;?>message/upload" class="list-group-item">
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;发布消息
+      </p>
+   </a>
+   <?php }?>
    <a href="<?php echo URL;?>file/listall" class="list-group-item">
       <p class="list-group-item-text">
          &nbsp;&nbsp;&nbsp;资料列表
       </p>
    </a>
-   <a href="<?php echo URL;?>" class="list-group-item">
+   <a href="<?php echo URL;?>message/listall" class="list-group-item">
 
       <p class="list-group-item-text">
-         &nbsp;&nbsp;&nbsp;重要消息<span class="badge pull-right">50</span>
+         &nbsp;&nbsp;&nbsp;重要消息
       </p>
    </a>
 </div>

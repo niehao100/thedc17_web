@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	var rootpath="http://"+location.hostname+"/thedc";
 	var modalstate =0; 
 	$("[data-toggle='popover']").popover();
 	// $("#loginAlert").alert('close');
@@ -14,6 +15,9 @@ $(document).ready(function() {
                     file: {
                         maxSize: 10 * 1024 * 1024,   // 10 MB
                         message: '文件超过10MB'
+                    },
+                    notEmpty: {
+                        message: '文件不能为空'
                     }
                 }
             }
@@ -60,15 +64,18 @@ $(document).ready(function() {
 					("#registerform").submit();
 				}
 	       
-				
+			return false;
 				}else if(modalstate==2)
 					{
 
 						$("#login").click();
+						return false;
 
+					}else if(modalstate==0){
+						
 					}
 		
-		return false;
+		
 		} 
 		} 
 	$("#login").click(function(){
@@ -81,7 +88,7 @@ $(document).ready(function() {
         	{
         	return false;
         	}
-		  $.post(window.location.href+'/user/login',
+		  $.post(rootpath+'/user/login',
 		  {
 		    nickname:$("#loginnickname").val(),
 		    password:$("#loginpassword").val(),
@@ -125,10 +132,10 @@ $(document).ready(function() {
 		window.location.href=window.location.href;});
 	
 	$('#registermodal').on('shown.bs.modal', function () {
-		modalstate=1;});
+		modalstate=1;$("#nickname").focus();});
 	
 	$('#loginmodal').on('shown.bs.modal', function () {
-		modalstate=2;});
+		modalstate=2;$("#loginnickname").focus();});
 	
 	$('#loginform').bootstrapValidator({
         message: 'This value is not valid',
@@ -158,7 +165,33 @@ $(document).ready(function() {
             }
         }
 	});
-            
+    
+	$('#messageupload').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	messagedecription:{
+                validators: {
+                    notEmpty: {
+                        message: '标题不能为空'
+                    }
+                }
+            },
+            inputtext:{
+            	validators: {
+                    notEmpty: {
+                        message: '内容不能为空'
+                    }
+                }
+            }
+        }
+	});
+	
+	
     $('#registerform').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {

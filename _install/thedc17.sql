@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-24 18:59:11
+-- Generation Time: 2015-08-25 09:09:34
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -68,14 +68,23 @@ CREATE TABLE IF NOT EXISTS `file` (
   `file_owner` varchar(50) NOT NULL,
   `file_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is invalid',
   PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
 
 --
--- 转存表中的数据 `file`
+-- 表的结构 `message`
 --
 
-INSERT INTO `file` (`file_id`, `file_name`, `file_comment`, `file_size`, `file_uploadtime`, `file_owner`, `file_valid`) VALUES
-(3, '1440430544_jqcool.net-bootstrapvalidator.zip', '啊东方蔷薇', 719344, '2015-08-24 15:35:44', 'hzh', 1);
+CREATE TABLE IF NOT EXISTS `message` (
+  `mess_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mess_title` text NOT NULL,
+  `mess_content` text NOT NULL,
+  `mess_owner` text NOT NULL,
+  `mess_uploadtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `mess_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is not.',
+  PRIMARY KEY (`mess_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -98,14 +107,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `user_nickname` (`user_nickname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- 转存表中的数据 `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`) VALUES
-(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '0000-00-00 00:00:00', NULL);
+(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '0000-00-00 00:00:00', NULL),
+(16, '测试员', '*A5598B808C0F9532C02390633521C53ADA41654A', 0, '测试', '法', '13533333333', 'h@d', '2015-08-25 01:32:41', '0000-00-00 00:00:00', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

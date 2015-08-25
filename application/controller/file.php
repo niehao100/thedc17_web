@@ -38,7 +38,10 @@ class File extends Controller
             header("location:".URL);
             return;
         }
-		$res=$this->filemodel->getfilelist();
+        header("location:".URL."file/listall2");
+    }
+    public function listall2(){
+        $res=$this->filemodel->getfilelist();
         require APP . 'view/_templates/header.php';
         require APP . 'view/file/delete_success.php';
         require APP . 'view/file/listall.php';

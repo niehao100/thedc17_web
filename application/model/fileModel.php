@@ -17,6 +17,9 @@ class fileModel
     }
     public function getfilelist()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $sql="select * from file where file_valid='1'";
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -24,6 +27,9 @@ class fileModel
     }
     public function deletefile($file_name)
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $sql = "select file_owner from file where file_name=:name";
         $parameters = array(':name' => $file_name);
         $query = $this->db->prepare($sql);
@@ -44,6 +50,9 @@ class fileModel
     }
     public function savefile()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if ($_FILES["inputfile"]["error"] <=0)
         {
             $newname=time()."_".$_FILES["inputfile"]["name"];
