@@ -31,8 +31,8 @@ class userModel
      */
     public function isUserExist($nickname)
     {
-        $sql = "SELECT count(*) FROM user where user_nickname=':nickname'";
-        $parameters = array(':nickname' => $nickname);
+        $sql = "SELECT count(*) FROM user where user_nickname=:nickname";
+        $parameters = array(":nickname" => $nickname);
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
         return $query->fetch(PDO::FETCH_NUM)[0]>0?true:false;

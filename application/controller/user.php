@@ -28,17 +28,22 @@ class User extends Controller
     
     public function register()
     {
+		if (!isset($_SESSION)) {
+            session_start();
+        }
         if (strtolower($_POST['vc'])!=$_SESSION['authnum_session'])
         {
             header("location:".URL);
         }
-        if (isset($_POST['register-submit']))
+        if (isset($_POST['registersubmit']))
         {
             $state=$this->usermodel->registeruser($_POST['nickname'],$_POST['password'],
                 $_POST['realname'],$_POST['class'],$_POST['cellphone'],$_POST['mailaddress']);
             if ($state==true)
             {
-                session_start();
+                if (!isset($_SESSION)) {
+            session_start();
+				}
                 $_SESSION['login']='true';
                 $_SESSION['username']=$_POST['nickname'];
                 $_SESSION['type']=0;
@@ -59,7 +64,9 @@ class User extends Controller
      */
     public function checkVC()
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (strtolower($_GET['vc'])==$_SESSION['authnum_session'])
         {
             echo json_encode(array('valid' => true));
@@ -70,7 +77,9 @@ class User extends Controller
     
     public function checkUser()
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if ($this->usermodel->isUserExist($_GET['nickname']))
         {
             echo json_encode(array('valid' => false));

@@ -19,7 +19,24 @@ $(document).ready(function() {
             }
         }
     });
-	
+	$("#registersubmit").click(function(){
+		values = $("#registerform").serializeArray(); 
+			    var values, index; 
+			    for (index = 0; index < values.length; ++index) 
+			    { 
+			    if (values[index].type != "submit") 
+			    { 
+			    $("#"+values[index].name).blur();
+			    	
+			    } 
+			    } 
+			    //alert($('#registerform').bootstrapValidator("isValid"));
+			    var bootstrapValidator = $('#registerform').data('bootstrapValidator');
+			if (true==bootstrapValidator.isValid())
+				{
+					("#registerform").submit();
+				}
+	})
 	document.onkeydown = function (e) { 
 		var theEvent = window.event || e; 
 		var code = theEvent.keyCode || theEvent.which; 
@@ -105,7 +122,7 @@ $(document).ready(function() {
 	
 	$('#loginmodal').on('hide.bs.modal', function () {
 		modalstate=0;
-		$('#loginform').bootstrapValidator('resetForm','true');});
+		window.location.href=window.location.href;});
 	
 	$('#registermodal').on('shown.bs.modal', function () {
 		modalstate=1;});
