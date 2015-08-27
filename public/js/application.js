@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	var rootpath="http://"+location.hostname+"/thedc";
+	var rootpath2="thedc";
 	var modalstate =0; 
+	//alert(window.location.pathname);
+	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")!=rootpath2)
+		document.getElementById('leftinfo').style.display = "none";
 	$("[data-toggle='popover']").popover();
 	// $("#loginAlert").alert('close');
 	$('#fileupload').bootstrapValidator({
@@ -176,7 +180,70 @@ $(document).ready(function() {
             }
         }
 	});
-	
+	$('#forumupload').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	forumdecription:{
+                validators: {
+                    notEmpty: {
+                        message: '标题不能为空'
+                    }
+                }
+            },
+            inputtext:{
+            	validators: {
+                    notEmpty: {
+                        message: '内容不能为空'
+                    }
+                }
+            },
+            vc:{
+            	validators:{
+            		notEmpty: {
+                        message: '验证码不能为空'
+                    },
+		            remote: {
+		                message: '验证码错误',
+		                url: rootpath+'/user/checkVc'
+		            }
+            	}
+            }
+        }
+	});
+	$('#threadupload').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        
+            inputtext:{
+            	validators: {
+                    notEmpty: {
+                        message: '内容不能为空'
+                    }
+                }
+            },
+            vc:{
+            	validators:{
+            		notEmpty: {
+                        message: '验证码不能为空'
+                    },
+		            remote: {
+		                message: '验证码错误',
+		                url: rootpath+'/user/checkVc'
+		            }
+            	}
+            }
+        }
+	});
 	$('#changeform').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {

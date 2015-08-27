@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-25 09:09:34
+-- Generation Time: 2015-08-27 18:29:50
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -68,7 +68,30 @@ CREATE TABLE IF NOT EXISTS `file` (
   `file_owner` varchar(50) NOT NULL,
   `file_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is invalid',
   PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `forum`
+--
+
+CREATE TABLE IF NOT EXISTS `forum` (
+  `forum_id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_title` text NOT NULL,
+  `forum_content` text NOT NULL,
+  `forum_owner` text NOT NULL,
+  `forum_estab` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `forum_type` int(11) NOT NULL,
+  PRIMARY KEY (`forum_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `forum`
+--
+
+INSERT INTO `forum` (`forum_id`, `forum_title`, `forum_content`, `forum_owner`, `forum_estab`, `forum_type`) VALUES
+(1, 'hello!世界', 'just\r\na\r\ntest!\r\n!', 'hzh', '2015-08-27 14:34:55', 0);
 
 -- --------------------------------------------------------
 
@@ -84,7 +107,30 @@ CREATE TABLE IF NOT EXISTS `message` (
   `mess_uploadtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `mess_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is not.',
   PRIMARY KEY (`mess_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thread`
+--
+
+CREATE TABLE IF NOT EXISTS `thread` (
+  `thread_id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_forumid` int(11) NOT NULL,
+  `thread_owner` text NOT NULL,
+  `thread_estab` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `thread_content` text NOT NULL,
+  PRIMARY KEY (`thread_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `thread`
+--
+
+INSERT INTO `thread` (`thread_id`, `thread_forumid`, `thread_owner`, `thread_estab`, `thread_content`) VALUES
+(1, 1, 'hzh', '2015-08-27 15:53:01', '回复试试。。\r\n。\r\n'),
+(2, 1, 'hzh', '2015-08-27 16:21:37', '    ffff');
 
 -- --------------------------------------------------------
 

@@ -6,7 +6,7 @@ nav
 
 body
 {
-	padding-top: 100px;
+	padding-top: 80px;
 }
 .navbar-brand
 {
@@ -17,3 +17,5 @@ textarea
 {
 	resize: none;
 }
+
+

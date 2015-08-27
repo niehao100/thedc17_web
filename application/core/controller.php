@@ -47,9 +47,11 @@ class Controller
         require APP . 'model/userModel.php';
         require APP . 'model/fileModel.php';
         require APP . 'model/messageModel.php';
+        require APP . 'model/forumModel.php';
         // create new "model" (and pass the database connection)
         $this->usermodel = new userModel($this->db);
         $this->filemodel = new fileModel($this->db);
         $this->messagemodel = new messageModel($this->db);
+        $this->forummodel = new forumModel($this->db);
     }
 }

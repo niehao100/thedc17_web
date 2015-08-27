@@ -24,6 +24,15 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+function handlestr($str)
+{
+    $str=str_replace(" ", "&nbsp;", $str);
+    
+    $str=str_replace("<", "&lt;", $str);
+    $str=str_replace(">", "&gt;", $str);
+    $str=str_replace("\n", "<br>", $str);
+    return $str;
+}
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 <div class="container">
@@ -295,7 +304,7 @@ if (!isset($_SESSION)) {
 
 <div class="container">
    <div class="row" >
-      <div class="col-xs-12 col-sm-3 col-lg-3 col-md-3" >
+      <div id="leftinfo" class="col-xs-12 col-sm-3 col-lg-3 col-md-3" >
          
          
          <div class="list-group">
@@ -337,19 +346,20 @@ if (!isset($_SESSION)) {
         论坛
       </h4>
    </span>
-   <a href="<?php echo URL;?>" class="list-group-item">
+   
+   <a href="<?php echo URL;?>forum/listall/0" class="list-group-item">
+      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;吐槽灌水</p>
+      
+   </a>
+   <a href="<?php echo URL;?>forum/listall/1" class="list-group-item">
+      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;平台报错</p>
+      
+   </a>
+   <a href="<?php echo URL;?>forum/listall/2" class="list-group-item">
       <p class="list-group-item-text">
          &nbsp;&nbsp;&nbsp;战事汇报
       </p>
      
-   </a>
-   <a href="<?php echo URL;?>" class="list-group-item">
-      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;吐槽灌水</p>
-      
-   </a>
-   <a href="<?php echo URL;?>" class="list-group-item">
-      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;平台报错</p>
-      
    </a>
 </div>
 

@@ -34,6 +34,7 @@ class User extends Controller
         if (strtolower($_POST['vc'])!=$_SESSION['authnum_session'])
         {
             header("location:".URL);
+            return;
         }
         if (isset($_POST['registersubmit']))
         {
