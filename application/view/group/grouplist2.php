@@ -12,7 +12,7 @@
    </thead>
    <?php if(isset($res) && $res!=null){?>
    <tbody>
-   <?php for($i=0;$i<count($res);++$i){ if ($res[$i]['group_valid']=='1'){?>
+   <?php for($i=0;$i<count($res);++$i){ ?>
    <tr>
          <td><?php echo 1+$i;?></td>
          <td><?php echo $res[$i]['group_name'];?></td>
@@ -20,7 +20,7 @@
          <td><?php echo $mem[$i];?></td>
          <td><?php echo $res[$i]['group_chant'];?></td>
 </tr>
-      <?php }}}?>
+      <?php }}?>
    </tbody>
 </table>
 </div>

@@ -26,5 +26,35 @@ textarea
 	margin:0 auto; text-align: center; color:#9d9d9d;
 }
 
-.email:hover{background:url(../img/mail_icon.png) left -27px no-repeat;}
+.email:hover{background:url("../img/mail_icon.png") left -27px no-repeat;}
 .email{ height: 35px; display:inline-block; line-height:35px; padding-left:20px; background:url(../img/mail_icon.png) left 11px no-repeat; margin-right:9px;color:#666;TEXT-ALIGN: left;text-decoration: none;}
+
+#fzf {
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+    width: 560px;
+}
+#fzf img {
+    border: medium none;
+    margin-bottom: 50px;
+}
+#fzf .error {
+    height: 200px;
+    position: relative;
+}
+#fzf .error img {
+    bottom: -50px;
+    position: absolute;
+    right: -50px;
+}
+#fzf .msg {
+    margin-bottom: 65px;
+}
+#cloud {
+    background: url("../img/error_cloud.png") repeat-x scroll 0 0 transparent;
+    bottom: 0;
+    height: 170px;
+    position: absolute;
+    width: 100%;
+}

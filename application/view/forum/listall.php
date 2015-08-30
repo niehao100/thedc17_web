@@ -34,6 +34,7 @@
    <div class="panel-footer pull-right"><?php echo "暂无回复。"?></div>
    <?php }?>
 </div>
+<br/>
 <?php }}?>
 <?php 
 if (!isset($_SESSION)) {
