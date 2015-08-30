@@ -33,7 +33,6 @@ textarea
     margin: 0 auto;
     padding-top: 50px;
     text-align: center;
-    width: 560px;
 }
 #fzf img {
     border: medium none;
@@ -54,7 +53,6 @@ textarea
 #cloud {
     background: url("../img/error_cloud.png") repeat-x scroll 0 0 transparent;
     bottom: 0;
-    height: 170px;
+
     position: absolute;
-    width: 100%;
 }
