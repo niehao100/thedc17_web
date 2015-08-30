@@ -14,7 +14,7 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"></script>
-    <script src="<?php echo URL; ?>js/application.js"></script>
+    <script src="<?php echo URL; ?>js/application.js" charset="utf-8"></script>
     
 
     
@@ -24,6 +24,12 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+if (isset($_SESSION['login']) && $_SESSION['login']==true)
+{
+    $index_bool=$this->groupmodel->isgroupmember()||$this->groupmodel->isgroupleader();
+}else{
+    $index_bool=false;
+}
 function handlestr($str)
 {
     $str=str_replace(" ", "&nbsp;", $str);
@@ -32,6 +38,22 @@ function handlestr($str)
     $str=str_replace(">", "&gt;", $str);
     $str=str_replace("\n", "<br>", $str);
     return $str;
+}
+function getname($i)
+{
+    if ($i==1)
+    {
+        return "沙发";
+    }
+    if ($i==2)
+    {
+        return "板凳";
+    }
+    if ($i==1)
+    {
+        return "地板";
+    }
+    return "#"+$i;
 }
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -339,6 +361,20 @@ function handlestr($str)
          &nbsp;&nbsp;&nbsp;重要消息
       </p>
    </a>
+   <a href="<?php echo URL;?>group/listall" class="list-group-item">
+
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;查看队伍
+      </p>
+   </a>
+   <?php if ($index_bool==true){?>
+   <a href="<?php echo URL;?>group/managegroup" class="list-group-item">
+
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;队伍管理
+      </p>
+   </a>
+   <?php }?>
 </div>
 <div class="list-group">
    <span class="list-group-item active">

@@ -1,5 +1,22 @@
-
-<div class="alert alert-info">共<?php if(isset($res) && $res!=null){echo count($res);}else{echo '0';}?>条主题</caption></div>
+<ol class="breadcrumb">
+  <li>论坛</li>
+  <li><a href="<?php echo URL;?>forum/listall/<?php echo $_SESSION['forum_type'];?>">
+  <?php 
+  switch ($_SESSION['forum_type'])
+  {
+      case '0':
+          echo '吐槽灌水';
+          break;
+          case '1':
+              echo '平台报错';
+              break;
+              case '2':
+                  echo '战事汇报';
+                  break;
+  }
+  ?></a></li>
+  <div class="pull-right">共<?php if(isset($res) && $res!=null){echo count($res);}else{echo '0';}?>条主题</caption></div>
+</ol>
 <?php if(isset($res) && $res!=null){?>
 <?php for($i=0;$i<count($res);++$i){?>
 <div class="panel panel-success">
@@ -22,8 +39,15 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-if (isset($_SESSION['login']) && $_SESSION['login']==true){
+if ($type==2 && isset($_SESSION['type']) && $_SESSION['type']=='0')
+{
 ?>
+<!-- 非管理员无法发布赛事信息。 -->
+    <?php 
+}
+elseif (isset($_SESSION['login']) && $_SESSION['login']==true){
+?>
+
 <fieldset > 
 <legend>发表主题</legend>
 <form class="form-horizontal" id="forumupload" role="form" action="<?php echo URL;?>forum/uploadsubject" method="post">

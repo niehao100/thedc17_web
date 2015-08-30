@@ -12,6 +12,7 @@ class Controller
      */
     public $model = null;
     
+    
 
     /**
      * Whenever controller is created, open a database connection too and load "the model".
@@ -48,10 +49,12 @@ class Controller
         require APP . 'model/fileModel.php';
         require APP . 'model/messageModel.php';
         require APP . 'model/forumModel.php';
+        require APP . 'model/groupModel.php';
         // create new "model" (and pass the database connection)
         $this->usermodel = new userModel($this->db);
         $this->filemodel = new fileModel($this->db);
         $this->messagemodel = new messageModel($this->db);
         $this->forummodel = new forumModel($this->db);
+        $this->groupmodel = new groupModel($this->db);
     }
 }

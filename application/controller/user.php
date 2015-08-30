@@ -94,6 +94,7 @@ class User extends Controller
         session_start();
         }
        $_SESSION['login']=false;
+       $_SESSION['type']=0;
        setcookie("autologin","",time()-10000,substr(URL_SUB_FOLDER,0,-1));
        header("location:".URL);
     }

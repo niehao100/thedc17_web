@@ -42,9 +42,11 @@ $(document).ready(function() {
 			    var bootstrapValidator = $('#registerform').data('bootstrapValidator');
 			if (true==bootstrapValidator.isValid())
 				{
-					$("#registerform").submit();
-					$('#registermodal').modal('hide');
+					//$("#registerform").submit();
+					//$('#registermodal').modal('hide');
+					return true;
 				}
+			return true;
 	})
 	document.onkeydown = function (e) { 
 		var theEvent = window.event || e; 
@@ -244,6 +246,46 @@ $(document).ready(function() {
             }
         }
 	});
+	$('#groupupload').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        
+            groupname:{
+            	validators: {
+                    notEmpty: {
+                        message: '队伍名称不能为空'
+                    },
+                    remote: {
+		                message: '队伍名已存在',
+		                url: rootpath+'/group/checkgroup'
+		            }
+                }
+            },
+            groupchant:{
+            	validators: {
+                    notEmpty: {
+                        message: '队伍口号不能为空'
+                    }
+                }
+            },
+            vc:{
+            	validators:{
+            		notEmpty: {
+                        message: '验证码不能为空'
+                    },
+		            remote: {
+		                message: '验证码错误',
+		                url: rootpath+'/user/checkVc'
+		            }
+            	}
+            }
+        }
+	});
 	$('#changeform').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -343,7 +385,7 @@ $(document).ready(function() {
                     },
                     remote: {
 		                message: '用户名已存在',
-		                url: window.location.href+'/user/checkUser'
+		                url: rootpath+'/user/checkUser'
 		            }
                 }
             },
@@ -417,7 +459,7 @@ $(document).ready(function() {
                     },
 		            remote: {
 		                message: '验证码错误',
-		                url: window.location.href+'/user/checkVc'
+		                url: rootpath+'/user/checkVc'
 		            }
             	}
             }

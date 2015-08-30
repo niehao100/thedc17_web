@@ -1,10 +1,10 @@
          
 </div>
 </div>
-</div>
-    <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
-    <script>
-        var url = "<?php echo URL; ?>";
-    </script>
+</div>    
+    <hr/>
+    <div class="footdiv"><a href="<?php echo URL;?>forum/listall/1">平台报错</a>&nbsp;
+    <a href="mailto:xxxxx@thedc.org" class="email" title="联系邮箱">xxxxx@thedc.org</a>
+    <br>designed by 队式网站组</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-27 18:29:50
+-- Generation Time: 2015-08-30 17:49:32
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -96,6 +96,56 @@ INSERT INTO `forum` (`forum_id`, `forum_title`, `forum_content`, `forum_owner`, 
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `groups`
+--
+
+CREATE TABLE IF NOT EXISTS `groups` (
+  `group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_name` text NOT NULL,
+  `group_chant` text NOT NULL,
+  `group_foundtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `group_leader` text NOT NULL,
+  `group_valid` int(11) NOT NULL DEFAULT '1' COMMENT '0 is invalid, 1 is valid',
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `groups`
+--
+
+INSERT INTO `groups` (`group_id`, `group_name`, `group_chant`, `group_foundtime`, `group_leader`, `group_valid`) VALUES
+(2, '管理员组', '哥有最高权限', '2015-08-29 16:24:29', 'hzh', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group_req`
+--
+
+CREATE TABLE IF NOT EXISTS `group_req` (
+  `req_id` int(11) NOT NULL AUTO_INCREMENT,
+  `req_owner` text NOT NULL,
+  `req_groupid` int(11) NOT NULL,
+  `req_content` int(11) NOT NULL,
+  `req_foundtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `req_status` int(11) NOT NULL DEFAULT '0' COMMENT '0 is requesting, 1 is approved, 2 is invalid,3 is leader',
+  PRIMARY KEY (`req_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `group_req`
+--
+
+INSERT INTO `group_req` (`req_id`, `req_owner`, `req_groupid`, `req_content`, `req_foundtime`, `req_status`) VALUES
+(1, 'hzh', 2, 0, '2015-08-29 16:24:29', 3),
+(2, 'fff', 2, 0, '2015-08-29 17:08:53', 1),
+(4, 'ttt', 2, 0, '2015-08-29 17:14:21', 1),
+(6, '测试员', 2, 0, '2015-08-30 15:19:26', 1),
+(7, 'rrr', 2, 0, '2015-08-30 15:26:36', 2);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `message`
 --
 
@@ -150,18 +200,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_lastlogin` datetime DEFAULT NULL,
   `user_lastfaillogin` datetime DEFAULT NULL,
+  `user_group` int(11) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `user_nickname` (`user_nickname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- 转存表中的数据 `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`) VALUES
-(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '0000-00-00 00:00:00', NULL),
-(16, '测试员', '*A5598B808C0F9532C02390633521C53ADA41654A', 0, '测试', '法', '13533333333', 'h@d', '2015-08-25 01:32:41', '0000-00-00 00:00:00', NULL);
+INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`, `user_group`) VALUES
+(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '0000-00-00 00:00:00', NULL, 0),
+(16, '测试员', '*A5598B808C0F9532C02390633521C53ADA41654A', 0, '测试', '法', '13533333333', 'h@d', '2015-08-25 01:32:41', '0000-00-00 00:00:00', NULL, 0),
+(17, 'fff', '*748A64860BBBCF47FEC51C21756E579E70707ED7', 0, 'f', 'f', '13422222222', 'd@d', '2015-08-29 16:37:03', '0000-00-00 00:00:00', NULL, 0),
+(18, 'ttt', '*6F021E72032DB29F9DA5E7ED9708305F5D82F769', 0, 't', 't', '12345678901', 'f@f', '2015-08-29 16:59:44', '0000-00-00 00:00:00', NULL, 0),
+(19, 'rrr', '*4EF9C32D3E8E72F010A4842267F7C1971BC6E347', 0, 'r', 'r', '13422222222', 'f@f', '2015-08-30 15:26:23', NULL, NULL, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

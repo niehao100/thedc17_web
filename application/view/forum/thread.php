@@ -1,21 +1,4 @@
-<?php 
-function getname($i)
-{
-    if ($i==1)
-    {
-        return "沙发";
-    }
-    if ($i==2)
-    {
-        return "板凳";
-    }
-    if ($i==1)
-    {
-        return "地板";
-    }
-    return "#"+$i;
-}
-?>
+
 <?php if (isset($_SESSION['forum_type'])){?>
 <ol class="breadcrumb">
   <li>论坛</li>

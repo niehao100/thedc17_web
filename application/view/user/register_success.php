@@ -9,7 +9,7 @@
          </div>
          <div style="font-size: 20px" class="modal-body">
             现在您将以<?php echo $_POST['nickname'];?>登录。
-            <small><span style="color: Red" id="time">3</span>秒钟以后跳转到 <a id="url" href="<?php echo URL; ?>">主页</a>" </small>
+            <small><span style="color: Red" id="time">3</span>秒钟以后跳转到 <a id="url" href="<?php echo URL; ?>">主页</a> </small>
          </div>
       </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
