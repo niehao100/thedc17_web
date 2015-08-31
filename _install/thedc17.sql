@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-30 17:49:32
+-- Generation Time: 2015-08-31 22:29:59
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `mess_uploadtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `mess_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is not.',
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -198,9 +198,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_phone` varchar(11) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   `user_createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_lastlogin` datetime DEFAULT NULL,
+  `user_lastlogin` datetime DEFAULT CURRENT_TIMESTAMP,
   `user_lastfaillogin` datetime DEFAULT NULL,
   `user_group` int(11) NOT NULL,
+  `user_lastfile` timestamp NOT NULL DEFAULT '1999-12-31 16:00:00',
+  `user_lastmessage` timestamp NOT NULL DEFAULT '1999-12-31 16:00:00',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `user_nickname` (`user_nickname`)
@@ -210,12 +212,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 转存表中的数据 `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`, `user_group`) VALUES
-(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '0000-00-00 00:00:00', NULL, 0),
-(16, '测试员', '*A5598B808C0F9532C02390633521C53ADA41654A', 0, '测试', '法', '13533333333', 'h@d', '2015-08-25 01:32:41', '0000-00-00 00:00:00', NULL, 0),
-(17, 'fff', '*748A64860BBBCF47FEC51C21756E579E70707ED7', 0, 'f', 'f', '13422222222', 'd@d', '2015-08-29 16:37:03', '0000-00-00 00:00:00', NULL, 0),
-(18, 'ttt', '*6F021E72032DB29F9DA5E7ED9708305F5D82F769', 0, 't', 't', '12345678901', 'f@f', '2015-08-29 16:59:44', '0000-00-00 00:00:00', NULL, 0),
-(19, 'rrr', '*4EF9C32D3E8E72F010A4842267F7C1971BC6E347', 0, 'r', 'r', '13422222222', 'f@f', '2015-08-30 15:26:23', NULL, NULL, 0);
+INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`, `user_group`, `user_lastfile`, `user_lastmessage`) VALUES
+(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '2015-08-31 21:14:48', NULL, 0, '2015-08-31 14:17:14', '2015-08-31 14:10:01'),
+(16, '测试员', '*A5598B808C0F9532C02390633521C53ADA41654A', 0, '测试', '法', '13533333333', 'h@d', '2015-08-25 01:32:41', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00'),
+(17, 'fff', '*748A64860BBBCF47FEC51C21756E579E70707ED7', 0, 'f', 'f', '13422222222', 'd@d', '2015-08-29 16:37:03', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00'),
+(18, 'ttt', '*6F021E72032DB29F9DA5E7ED9708305F5D82F769', 0, 't', 't', '12345678901', 'f@f', '2015-08-29 16:59:44', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00'),
+(19, 'rrr', '*4EF9C32D3E8E72F010A4842267F7C1971BC6E347', 0, 'r', 'r', '13422222222', 'f@f', '2015-08-30 15:26:23', NULL, NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

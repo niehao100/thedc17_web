@@ -4,6 +4,7 @@ class Message extends Controller
 {
     public function listall()
     {
+        $this->messagemodel->updatetime();
         $res=$this->messagemodel->getmessagelist();
         require APP . 'view/_templates/header.php';
         require APP . 'view/message/listall.php';
@@ -21,6 +22,7 @@ class Message extends Controller
     }
     public function listitem($mess_id)
     {
+        
         $res=$this->messagemodel->listmessage($mess_id);
         require APP . 'view/_templates/header.php';
         require APP . 'view/message/list.php';
@@ -41,6 +43,7 @@ class Message extends Controller
         header("location:".URL."message/listall2");
     }
     public function listall2(){
+        $this->messagemodel->updatetime();
         $res=$this->messagemodel->getmessagelist();
         require APP . 'view/_templates/header.php';
         require APP . 'view/message/delete_success.php';

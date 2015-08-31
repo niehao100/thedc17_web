@@ -48,6 +48,20 @@ class fileModel
         }
         return false;
     }
+    public function updatetime()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_SESSION['login']) && $_SESSION['login']==true)
+        {
+            $sql = "update user set user_lastfile='".date('Y-m-d H:i:s',time())."' where user_nickname=:name";
+            $parameters = array(':name' => $_SESSION['username']);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            return true;
+        }
+    }
     public function savefile()
     {
         if (!isset($_SESSION)) {

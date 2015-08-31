@@ -41,6 +41,7 @@ class File extends Controller
         header("location:".URL."file/listall2");
     }
     public function listall2(){
+        $this->filemodel->updatetime();
         $res=$this->filemodel->getfilelist();
         require APP . 'view/_templates/header.php';
         require APP . 'view/file/delete_success.php';
@@ -78,6 +79,7 @@ class File extends Controller
         fclose($fp);
     }
      public function listall (){
+         $this->filemodel->updatetime();
          $res=$this->filemodel->getfilelist();
          require APP . 'view/_templates/header.php';
          require APP . 'view/file/listall.php';

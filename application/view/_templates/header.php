@@ -30,6 +30,8 @@ if (isset($_SESSION['login']) && $_SESSION['login']==true)
 }else{
     $index_bool=false;
 }
+
+
 function handlestr($str)
 {
     $str=str_replace(" ", "&nbsp;", $str);
@@ -352,13 +354,13 @@ function getname($i)
    <?php }?>
    <a href="<?php echo URL;?>file/listall" class="list-group-item">
       <p class="list-group-item-text">
-         &nbsp;&nbsp;&nbsp;资料列表
+         &nbsp;&nbsp;&nbsp;资料列表<?php if (($filenum=$this->usermodel->getfilenum())>0){?><span class="badge pull-right"><?php echo $filenum;?></span><?php }?>
       </p>
    </a>
    <a href="<?php echo URL;?>message/listall" class="list-group-item">
 
       <p class="list-group-item-text">
-         &nbsp;&nbsp;&nbsp;重要消息
+         &nbsp;&nbsp;&nbsp;重要消息<?php if (($messagenum=$this->usermodel->getmessagenum())>0){?><span class="badge pull-right"><?php echo $messagenum;?></span><?php }?>
       </p>
    </a>
    <a href="<?php echo URL;?>group/listall" class="list-group-item">

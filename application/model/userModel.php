@@ -71,15 +71,58 @@ class userModel
             $_SESSION['username']=$res[0];
             $_SESSION['type']=$res[1];
             $_SESSION['pass']=$res[2];
-            $sql = "update user set user_lastlogin='".time()."' where user_nickname=:nick";
+            $sql = "update user set user_lastlogin='".date('Y-m-d H:i:s',time())."' where user_nickname=:nick";
             $parameters = array(':nick' => $nickname);
             $query = $this->db->prepare($sql);
             $query->execute($parameters);
             return true;
         }else{
             $_SESSION['login']=false;
+            $_SESSION['type']=0;
+            $sql = "update user set user_lastfaillogin='".date('Y-m-d H:i:s',time())."' where user_nickname=:nick";
+            $parameters = array(':nick' => $nickname);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
             return false;
         }
+    }
+    public function getfilenum()
+    {
+        if (isset($_SESSION['login']) && $_SESSION['login']==true)
+        {
+            $sql = "SELECT user_lastfile FROM user where user_nickname=:nick";
+            $parameters = array(':nick' => $_SESSION['username']);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            $res=$query->fetch(PDO::FETCH_NUM);
+            
+            $sql = "SELECT count(*) FROM file where file_uploadtime>=:time";
+            $parameters = array(':time' => $res[0]);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            $res=$query->fetch(PDO::FETCH_NUM);
+            return $res[0];
+        }
+        return 0;
+    }
+    public function getmessagenum()
+    {
+        if (isset($_SESSION['login']) && $_SESSION['login']==true)
+        {
+            $sql = "SELECT user_lastmessage FROM user where user_nickname=:nick";
+            $parameters = array(':nick' => $_SESSION['username']);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            $res=$query->fetch(PDO::FETCH_NUM);
+    
+            $sql = "SELECT count(*) FROM message where mess_uploadtime>=:time";
+            $parameters = array(':time' => $res[0]);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            $res=$query->fetch(PDO::FETCH_NUM);
+            return $res[0];
+        }
+        return 0;
     }
     public function checkautologin($al)
     {

@@ -15,6 +15,20 @@ class messageModel
             exit('Database connection could not be established.');
         }
     }
+    public function updatetime()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_SESSION['login']) && $_SESSION['login']==true)
+        {
+            $sql = "update user set user_lastmessage='".date('Y-m-d H:i:s',time())."' where user_nickname=:name";
+            $parameters = array(':name' => $_SESSION['username']);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            return true;
+        }
+    }
     public function listmessage($mess_id)
     {
         if (!isset($_SESSION)) {
