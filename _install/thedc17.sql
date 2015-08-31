@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-31 22:29:59
+-- Generation Time: 2015-08-31 22:42:02
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_phone` varchar(11) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   `user_createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_lastlogin` datetime DEFAULT CURRENT_TIMESTAMP,
+  `user_lastlogin` datetime DEFAULT NULL,
   `user_lastfaillogin` datetime DEFAULT NULL,
   `user_group` int(11) NOT NULL,
   `user_lastfile` timestamp NOT NULL DEFAULT '1999-12-31 16:00:00',
