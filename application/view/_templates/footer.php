@@ -30,7 +30,7 @@ if(!isset($_SESSION['totalguest']))
         $fp = fopen($filename,"w");
         fwrite($fp, json_encode($counter));
         fclose($fp);
-        
+        echo "总访问量：".$total."&nbsp;今日访问量：".$today;
     }else{
         $date=date("Ymd");
         $counter[$date]=1;
