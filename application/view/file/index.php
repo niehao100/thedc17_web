@@ -6,11 +6,11 @@
       <label for="filedecription" class="col-sm-2 control-label">描述</label>
       <div class="col-sm-10">
          <input type="text" class="form-control" id="filedecription"  name="filedecription"
-            placeholder="请输入一句话描述">
+            placeholder="请输入一句话描述" onchange="document.forms['fileupload'].action='<?php echo URL;?>file/upload?decription='+document.getElementById('filedecription').value">
       </div>
    </div>
    </form>
-<form class="form-horizontal" id="fileupload" onsubmit="document.forms['fileupload'].action='<?php echo URL;?>file/upload'+'?decription='+document.getElementById('filedecription').value;return true;" role="form" action="<?php echo URL;?>file/upload" method="post"
+<form class="form-horizontal" id="fileupload" role="form" action="<?php echo URL;?>file/upload?decription=" method="post"
 enctype="multipart/form-data">
    
    <div class="form-group">

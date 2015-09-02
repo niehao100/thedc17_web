@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-08-31 22:42:02
+-- Generation Time: 2015-09-03 00:06:17
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `file` (
   `file_owner` varchar(50) NOT NULL,
   `file_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is invalid',
   PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -109,13 +109,6 @@ CREATE TABLE IF NOT EXISTS `groups` (
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
---
--- 转存表中的数据 `groups`
---
-
-INSERT INTO `groups` (`group_id`, `group_name`, `group_chant`, `group_foundtime`, `group_leader`, `group_valid`) VALUES
-(2, '管理员组', '哥有最高权限', '2015-08-29 16:24:29', 'hzh', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -132,17 +125,6 @@ CREATE TABLE IF NOT EXISTS `group_req` (
   PRIMARY KEY (`req_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
---
--- 转存表中的数据 `group_req`
---
-
-INSERT INTO `group_req` (`req_id`, `req_owner`, `req_groupid`, `req_content`, `req_foundtime`, `req_status`) VALUES
-(1, 'hzh', 2, 0, '2015-08-29 16:24:29', 3),
-(2, 'fff', 2, 0, '2015-08-29 17:08:53', 1),
-(4, 'ttt', 2, 0, '2015-08-29 17:14:21', 1),
-(6, '测试员', 2, 0, '2015-08-30 15:19:26', 1),
-(7, 'rrr', 2, 0, '2015-08-30 15:26:36', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -157,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `mess_uploadtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `mess_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 is valid,0 is not.',
   PRIMARY KEY (`mess_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -213,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`, `user_group`, `user_lastfile`, `user_lastmessage`) VALUES
-(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '2015-08-31 21:14:48', NULL, 0, '2015-08-31 14:17:14', '2015-08-31 14:10:01'),
+(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '2015-09-03 00:02:24', NULL, 0, '2015-09-02 16:05:20', '2015-09-02 16:05:29'),
 (16, '测试员', '*A5598B808C0F9532C02390633521C53ADA41654A', 0, '测试', '法', '13533333333', 'h@d', '2015-08-25 01:32:41', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00'),
 (17, 'fff', '*748A64860BBBCF47FEC51C21756E579E70707ED7', 0, 'f', 'f', '13422222222', 'd@d', '2015-08-29 16:37:03', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00'),
 (18, 'ttt', '*6F021E72032DB29F9DA5E7ED9708305F5D82F769', 0, 't', 't', '12345678901', 'f@f', '2015-08-29 16:59:44', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00'),

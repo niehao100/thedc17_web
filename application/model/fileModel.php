@@ -77,9 +77,15 @@ class fileModel
                 $newpath.$newname);
                 $sql = "INSERT INTO `file`(`file_name`, `file_comment`, `file_size`,  `file_owner`, `file_valid`) VALUES ".
                 "(:name,:comment,:size,:owner,:valid)";
-                $parameters = array(':name' => $newname,':comment'=>htmlspecialchars($_GET['decription']),':size'=>$_FILES["inputfile"]["size"],
-                    ':owner'=>$_SESSION['username'],':valid'=>1
-                );
+                if (isset($_GET['decription']))
+                {
+                    $parameters = array(':name' => $newname,':comment'=>htmlspecialchars($_GET['decription']),':size'=>$_FILES["inputfile"]["size"],
+                    ':owner'=>$_SESSION['username'],':valid'=>1);
+                }
+                else{
+                    $parameters = array(':name' => $newname,':comment'=>htmlspecialchars(""),':size'=>$_FILES["inputfile"]["size"],
+                        ':owner'=>$_SESSION['username'],':valid'=>1);
+                }
                 $query = $this->db->prepare($sql);
                 $query->execute($parameters);
             }

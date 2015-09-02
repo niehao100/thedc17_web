@@ -1,10 +1,6 @@
 $(document).ready(function() {
 	var rootpath="http://"+location.hostname+"/thedc";
-	var modalstate =0; 
-	var rootpath2="thedc";
-	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")!=rootpath2){
-		document.getElementById('leftinfo').style.display = "none";
-	}
+	var modalstate =0;
 
 	$("[data-toggle='popover']").popover();
 	// $("#loginAlert").alert('close');
@@ -102,12 +98,14 @@ $(document).ready(function() {
 		  {
 		    nickname:$("#loginnickname").val(),
 		    password:$("#loginpassword").val(),
-		    rememberme:document.getElementById('rememberme').checked==true?'1':'0'
+		    rememberme:document.getElementById('rememberme').checked==true?'1':'0',
+		    ajax:'1'
 		  },
 		  function(data,status){
 		    if (status=='success')
 		    {
-		    	var obj = JSON.parse(data);
+		    	//alert("Data: " + data + "\nStatus: " + status);
+		    	var obj = eval('('+data+')');
 		    	if (obj.status=='success')
 		    	{
 		    		if (obj.cookie!="")

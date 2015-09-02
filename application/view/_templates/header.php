@@ -30,7 +30,8 @@ if (isset($_SESSION['login']) && $_SESSION['login']==true)
 }else{
     $index_bool=false;
 }
-
+//if (isset($_SESSION['login']) && isset($_COOKIE['autologin']))
+//   echo ("<script>alert('".$_SESSION['login'].$_COOKIE['autologin']."')</script>");
 
 function handlestr($str)
 {
@@ -403,6 +404,12 @@ function getname($i)
 
       </div>
  <!--          style="background-color: #dedef8;box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" -->
+  <script type="text/javascript">
+  var rootpath2="thedc";
+	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")!=rootpath2){
+		document.getElementById('leftinfo').style.display = "none";
+	}
+  </script>
     <div class="col-xs-12 hidden-xs col-sm-8 col-lg-8 col-xs-8" >
         
       

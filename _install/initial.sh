@@ -11,4 +11,4 @@ grep -rl "toor" *|xargs -i sed -i 's/toor/******/g' "{}"
 cd ~/mini/public/js
 #grep -rl "/thedc" *|xargs -i sed -i 's/thedc//g' "{}"
 #把public/js/application.js 中的"/thedc"改为""
-#还有第二行。。。。
+#还有header.php最下边的一行。。。。

@@ -95,6 +95,7 @@ class User extends Controller
         }
        $_SESSION['login']=false;
        $_SESSION['type']=0;
+       $_SESSION['notauto']=true;
        setcookie("autologin","",time()-10000,substr(URL_SUB_FOLDER,0,-1));
        header("location:".URL);
     }
@@ -123,7 +124,8 @@ class User extends Controller
         if (!isset($_SESSION)) {
             session_start();
         }
-        if (isset($_COOKIE['autologin'])&&$_COOKIE['autologin']!="")
+        
+        if (!isset($_POST['ajax']) && isset($_COOKIE['autologin'])&&$_COOKIE['autologin']!="")
         {
             
             if ($this->usermodel->checkautologin($_COOKIE['autologin']))
@@ -143,6 +145,7 @@ class User extends Controller
                 $co="";
             }
             $arr = array ('cookie'=>$co,'status'=>"success");
+            $_SESSION['notauto']=false;
             echo json_encode($arr);
         }else{
             $arr = array ('cookie'=>"",'status'=>"用户名不存在或密码错误");
