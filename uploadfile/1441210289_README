@@ -1,0 +1,22 @@
+用户名thedc17，密码hardware
+
+服务器运行在docker容器thedc17中
+
+容器外路径 /home/thedc17/mini
+
+容器内/var/www/html/
+
+域名 thedc.org
+
+mysql -uthedc17 -p******
+
+进入容器方法
+
+PID=$(docker inspect --format "{{ .State.Pid }}" thedc17)
+sudo nsenter --target $PID --mount --uts --ipc --net --pid
+
+
+
+Warning: move_uploaded_file(/app/application/model/../../uploadfile/1440467549_README): failed to open stream: Permission denied in /app/application/model/fileModel.php on line 54
+
+Warning: move_uploaded_file(): Unable to move '/tmp/phpVdUOPg' to '/app/application/model/../../uploadfile/1440467549_README' in /app/application/model/fileModel.php on line 54
