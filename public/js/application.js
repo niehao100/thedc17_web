@@ -231,17 +231,6 @@ $(document).ready(function() {
                         message: '内容不能为空'
                     }
                 }
-            },
-            vc:{
-            	validators:{
-            		notEmpty: {
-                        message: '验证码不能为空'
-                    },
-		            remote: {
-		                message: '验证码错误',
-		                url: rootpath+'/user/checkVc'
-		            }
-            	}
             }
         }
 	});

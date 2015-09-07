@@ -51,11 +51,11 @@ function getname($i)
     {
         return "板凳";
     }
-    if ($i==1)
+    if ($i==3)
     {
         return "地板";
     }
-    return "#"+$i;
+    return "#".(string)$i;
 }
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

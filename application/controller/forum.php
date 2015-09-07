@@ -44,11 +44,6 @@ class Forum extends Controller
        if (!isset($_SESSION)) {
            session_start();
        }
-       if (strtolower($_POST['vc'])!=$_SESSION['authnum_session'])
-       {
-           header("location:".URL);
-           return;
-       }
        $res=$this->forummodel->uploadthread();
        header("location:".URL."forum/thread/".$_POST['forumid']."#".$res);
    }

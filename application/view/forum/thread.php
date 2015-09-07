@@ -65,17 +65,6 @@ if (isset($_SESSION['login']) && $_SESSION['login']==true){
     <div class="col-sm-10">
       <textarea id="inputtext" class="form-control" rows="5" name="inputtext"></textarea></div>
 </div>
-<div class="form-group">
-      <label for="vc" class="col-sm-2 control-label">验证码</label>
-      <div class="col-sm-10">
-      <div class="input-group">
-         <input type="text"
-              class="form-control" id="vc" name="vc">
-			<span class="input-group-addon"><img  title="点击刷新" src="<?php echo URL; ?>captcha" align="absbottom" onclick="this.src='<?php echo URL; ?>captcha/index/'+Math.random();"></img></span>
-		     <div style='width: 20px'></div>
-		</div>
-      </div>
-   </div>
    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
          <button type="submit" id="messagesubmit" class="btn btn-default">发布</button>
