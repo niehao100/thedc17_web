@@ -50,11 +50,13 @@ class Controller
         require APP . 'model/messageModel.php';
         require APP . 'model/forumModel.php';
         require APP . 'model/groupModel.php';
+        require APP . 'model/preselectModel.php';
         // create new "model" (and pass the database connection)
         $this->usermodel = new userModel($this->db);
         $this->filemodel = new fileModel($this->db);
         $this->messagemodel = new messageModel($this->db);
         $this->forummodel = new forumModel($this->db);
         $this->groupmodel = new groupModel($this->db);
+        $this->preselectmodel = new preselectModel($this->db);
     }
 }

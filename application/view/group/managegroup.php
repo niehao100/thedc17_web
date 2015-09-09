@@ -93,3 +93,33 @@
 </div>
 </fieldset>
 <?php }?>
+
+<?php if (openpre==1){if ($mytime==-1){?>
+<form class="form-horizontal" id="choosetime" role="form" action="<?php echo URL;?>group/settime" method="post">
+
+   <div class="form-group">
+      <label for="timeperiod" class="col-sm-2 control-label">选择预赛时间</label>
+      <div class="col-sm-10">
+         <select class="selectpicker" id='timeperiod' name='timeperiod'>
+         <?php for ($i=0;$i<count($alltime);++$i) {if ($alltime[$i]==""){?>
+            <option value="<?php echo $i;?>"><?php echo $this->preselectmodel->gettime($i);?></option>
+        <?php }}?>
+         </select>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" id="timesubmit" class="btn btn-default">提交</button>
+      </div>
+   </div>
+
+</form>
+
+<?php }else{?>
+<div class="panel panel-default">
+   <div class="panel-body">
+      您选择的时间是&nbsp;<strong><?php echo $this->preselectmodel->gettime($mytime);?></strong>&nbsp;&nbsp;&nbsp;
+      <a href="<?php echo URL."group/canceltime"?>">取消预约</a>
+   </div>
+</div>
+<?php }}?>

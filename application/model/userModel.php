@@ -71,7 +71,7 @@ class userModel
             $_SESSION['username']=$res[0];
             $_SESSION['type']=$res[1];
             $_SESSION['pass']=$res[2];
-            $sql = "update user set user_lastlogin='".date('Y-m-d H:i:s',time())."' where user_nickname=:nick";
+            $sql = "update user set user_lastlogin='".date('Y-m-d H:i:s',time())."',user_lastip='".$_SERVER['REMOTE_ADDR']."' where user_nickname=:nick";
             $parameters = array(':nick' => $nickname);
             $query = $this->db->prepare($sql);
             $query->execute($parameters);

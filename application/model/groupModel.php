@@ -168,6 +168,23 @@ class groupModel
         $query->execute($parameters);
         return $query->fetch(PDO::FETCH_NUM)[0]>0?true:false;
     }
+    public function getgroupname()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $sql = "select req_groupid from group_req where req_owner=:name and (req_status=1 or req_status=3)";
+        $parameters = array(':name' => $_SESSION['username']);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        
+        $sql = "select group_name from groups where group_id=:id";
+        $parameters = array(':id' => $query->fetch(PDO::FETCH_NUM)[0]);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        
+        return $query->fetch(PDO::FETCH_NUM)[0];
+    }
     public function getgroupinfo()
     {
         if (!isset($_SESSION)) {

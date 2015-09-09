@@ -59,6 +59,11 @@ class Group extends Controller
         $isleader=$this->groupmodel->isgroupleader();
         if ($ismember || $isleader )
         {
+            if (openpre==1)
+            {
+                $mytime=$this->preselectmodel->getmytime($this->groupmodel->getgroupname());
+                $alltime=$this->preselectmodel->getalltime();
+            }
             $res=$this->groupmodel->listall();
             $mem=$this->groupmodel->getgroupmember();
         
@@ -96,12 +101,35 @@ class Group extends Controller
         $isleader=$this->groupmodel->isgroupleader();
         $myreq=$this->groupmodel->listmyreq();
         $req=$this->groupmodel->getrequest();
+
         require APP . 'view/_templates/header.php';
         require APP . 'view/group/grouplist.php';
         require APP . 'view/_templates/middle.php';
         require APP . 'view/group/grouplist.php';
         require APP . 'view/_templates/footer.php';
 
+    }
+    
+    public function settime()
+    {
+        if (openpre==1)
+        {
+            $groupname=$this->groupmodel->getgroupname();
+            $this->preselectmodel->settime($groupname);
+        }
+        header("location:".URL."group/managegroup");
+        return ;
+    }
+    
+    public function canceltime()
+    {
+        if (openpre==1)
+        {
+            $groupname=$this->groupmodel->getgroupname();
+            $this->preselectmodel->canceltime($groupname);
+        }
+        header("location:".URL."group/managegroup");
+        return ;
     }
 }
 ?>

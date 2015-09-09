@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var rootpath="http://"+location.hostname+"/thedc";
 	var modalstate =0;
-
+	$('.selectpicker').selectpicker();
 	$("[data-toggle='popover']").popover();
 	// $("#loginAlert").alert('close');
 	$('#fileupload').bootstrapValidator({

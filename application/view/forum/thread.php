@@ -23,7 +23,7 @@
 
 <div class="panel panel-success">
    <div class="panel-heading">
-      <span class="panel-title">主题：<?php echo $sub['forum_title'];?></span>
+      <span class="panel-title">主题：<?php echo handlestr2($sub['forum_title']);?></span>
       <span class="panel-title pull-right"><?php echo "<i>".$sub['forum_owner']."</i>发表于".date('m-d H:i',strtotime($sub['forum_estab']))?></span>
    </div>
    <div class="panel-body"><h4>
@@ -63,7 +63,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']==true){
    <div class="form-group">
       <label  for="inputtext" class="col-sm-2 control-label">内容</label>
     <div class="col-sm-10">
-      <textarea id="inputtext" class="form-control" rows="5" name="inputtext"></textarea></div>
+      <textarea id="inputtext" class="form-control" rows="5" name="inputtext" placeholder="支持Markdown语法"></textarea></div>
 </div>
    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">

@@ -4,22 +4,24 @@
     <title>第17届电设比赛</title>
     <meta charset="utf-8">
     <meta name="description" content="thedc17">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <link href="http://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
      <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+     <link href="<?php echo URL; ?>css/bootstrap-select.min.css" rel="stylesheet">
      
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"></script>
     <script src="<?php echo URL; ?>js/application.js" charset="utf-8"></script>
-    
+    <script src="<?php echo URL; ?>js/bootstrap-select.min.js" charset="utf-8"></script>
     
 </head>
 <body>
 <?php
+require APP . 'controller/Parsedown.php';
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -34,13 +36,26 @@ if (isset($_SESSION['login']) && $_SESSION['login']==true)
 
 function handlestr($str)
 {
-    $str=str_replace(" ", "&nbsp;", $str);
+    //$str=str_replace(" ", "&nbsp;", $str);
     
     $str=str_replace("<", "&lt;", $str);
     $str=str_replace(">", "&gt;", $str);
+    //$str=str_replace("\n", "<br>", $str);
+    $Parsedown = new Parsedown();
+    return str_replace(" ", "&nbsp;",$Parsedown->text($str));
+}
+
+function handlestr2($str)
+{
+    $str=str_replace(" ", "&nbsp;", $str);
+
+    $str=str_replace("<", "&lt;", $str);
+    $str=str_replace(">", "&gt;", $str);
     $str=str_replace("\n", "<br>", $str);
+
     return $str;
 }
+
 function getname($i)
 {
     if ($i==1)
