@@ -61,7 +61,7 @@ class preselectModel
     public function settime($groupname)
     {
         $t=$this->getalltime();
-        if ($this->getmytime($groupname)==-1)
+        if ($this->getmytime($groupname)==-1 && $t[$_POST['timeperiod']]=="")
         {
             $sql="update groups set group_pretime=:time where group_name=:group";
             $parameters = array(':time' => $_POST['timeperiod'],':group' => $groupname);
