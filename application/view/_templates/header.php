@@ -446,6 +446,18 @@ $('#myCarousel').carousel({
      
    </a>
 </div>
+<div class="list-group">
+   <span class="list-group-item active">
+      <h4 class="list-group-item-heading">
+        介绍
+      </h4>
+   </span>
+   
+   <a href="<?php echo URL;?>intro/rule" class="list-group-item">
+      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;规则</p>
+      
+   </a>
+</div>
 
       </div>
  <!--          style="background-color: #dedef8;box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" -->

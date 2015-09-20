@@ -1149,6 +1149,7 @@ class Parsedown
         {
             return;
         }
+        $Link['element']['attributes']['href']=URL.'img/'.$Link['element']['attributes']['href'];
 
         $Inline = array(
             'extent' => $Link['extent'] + 1,

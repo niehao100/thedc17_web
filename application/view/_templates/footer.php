@@ -4,7 +4,7 @@
 </div>    
     <hr/>
     <div class="footdiv"><a href="<?php echo URL;?>forum/listall/1">平台报错</a>&nbsp;
-    <a href="mailto:xxxxx@thedc.org" class="email" title="联系邮箱">xxxxx@thedc.org</a>&nbsp;
+    <a href="mailto:thedc@eesast.com" class="email" title="联系邮箱">thedc@eesast.com</a>&nbsp;
 <?php 
 //统计访问量
 if (!isset($_SESSION)) {
