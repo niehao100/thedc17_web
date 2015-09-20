@@ -343,7 +343,7 @@ function getname($i)
 
 <div class="container">
    <div class="row" >
-   <?php /*
+
 <div class="visible-xs col-xs-12" id="myCarouse3">
    <div id="myCarousel" class="carousel slide">
    <!-- 轮播（Carousel）指标 -->
@@ -373,7 +373,7 @@ $('#myCarousel').carousel({
 
 </script>
 <br>
-</div>*/?>
+</div>
       <div id="leftinfo" class="col-xs-12 col-sm-3 col-lg-3 col-md-3" >
          
          
@@ -469,7 +469,7 @@ $('#myCarousel').carousel({
 	}
   </script>
   
-    <div class=" col-sm-8 col-lg-8 col-xs-8" >
+    <div class="hidden-xs col-sm-8 col-lg-8 col-xs-8" >
         
       
    

@@ -57,3 +57,5 @@ textarea
 
     position: absolute;
 }
+.tindent p{ text-indent:2em}
+.tindent p img{ text-indent:0em; max-width: 80%;}

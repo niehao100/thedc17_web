@@ -1,10 +1,10 @@
    <ol class="breadcrumb">
   <li>介绍</li>
-  <li><a href="http://thedc.org/intro/rule">
+  <li><a href="<?php echo URL;?>intro/rule">
   规则</a></li>
 </ol>
 <div class="panel panel-success">
-   <div class="panel-body"><h4>
+   <div class="panel-body tindent">
         <?php echo $info; ?>
    </div>
    </div>

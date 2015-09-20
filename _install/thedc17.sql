@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-09-10 00:10:11
+-- Generation Time: 2015-09-20 21:42:47
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -70,13 +70,6 @@ CREATE TABLE IF NOT EXISTS `file` (
   PRIMARY KEY (`file_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
---
--- 转存表中的数据 `file`
---
-
-INSERT INTO `file` (`file_id`, `file_name`, `file_comment`, `file_size`, `file_uploadtime`, `file_owner`, `file_valid`) VALUES
-(7, '1441210289_README', 'ffff', 679, '2015-09-02 16:11:29', 'hzh', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -92,14 +85,6 @@ CREATE TABLE IF NOT EXISTS `forum` (
   `forum_type` int(11) NOT NULL,
   PRIMARY KEY (`forum_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- 转存表中的数据 `forum`
---
-
-INSERT INTO `forum` (`forum_id`, `forum_title`, `forum_content`, `forum_owner`, `forum_estab`, `forum_type`) VALUES
-(1, 'hello!世界', 'just\r\na\r\ntest!\r\n!', 'hzh', '2015-08-27 14:34:55', 0),
-(2, 'ceshi', 'ceshi', 'hzh', '2015-09-09 10:55:45', 0);
 
 -- --------------------------------------------------------
 
@@ -118,13 +103,6 @@ CREATE TABLE IF NOT EXISTS `groups` (
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
---
--- 转存表中的数据 `groups`
---
-
-INSERT INTO `groups` (`group_id`, `group_name`, `group_chant`, `group_foundtime`, `group_leader`, `group_valid`, `group_pretime`) VALUES
-(1, 'test', '测试一下', '2015-09-09 15:05:59', 'hzh', 1, -1);
-
 -- --------------------------------------------------------
 
 --
@@ -140,13 +118,6 @@ CREATE TABLE IF NOT EXISTS `group_req` (
   `req_status` int(11) NOT NULL DEFAULT '0' COMMENT '0 is requesting, 1 is approved, 2 is invalid,3 is leader',
   PRIMARY KEY (`req_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `group_req`
---
-
-INSERT INTO `group_req` (`req_id`, `req_owner`, `req_groupid`, `req_content`, `req_foundtime`, `req_status`) VALUES
-(1, 'hzh', 1, 0, '2015-09-09 15:05:59', 3);
 
 -- --------------------------------------------------------
 
@@ -178,17 +149,6 @@ CREATE TABLE IF NOT EXISTS `thread` (
   `thread_content` text NOT NULL,
   PRIMARY KEY (`thread_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- 转存表中的数据 `thread`
---
-
-INSERT INTO `thread` (`thread_id`, `thread_forumid`, `thread_owner`, `thread_estab`, `thread_content`) VALUES
-(1, 1, 'hzh', '2015-08-27 15:53:01', '回复试试。。\r\n。\r\n'),
-(2, 1, 'hzh', '2015-08-27 16:21:37', '    ffff'),
-(3, 1, 'hzh', '2015-09-07 12:05:16', '<script>alert(''fffff'');</script>'),
-(5, 2, 'hzh', '2015-09-09 11:41:02', '针对中文,演示Markdown的各种语法\r\n  \r\n大标题\r\n===================================\r\n  大标题一般显示工程名,类似html的\\<h1\\><br />\r\n  你只要在标题下面跟上=====即可\r\n\r\n  \r\n中标题\r\n-----------------------------------\r\n  中标题一般显示重点项,类似html的\\<h2\\><br />\r\n  你只要在标题下面输入------即可'),
-(6, 2, 'hzh', '2015-09-09 11:57:50', '方法  烦烦烦    ffff');
 
 -- --------------------------------------------------------
 
@@ -222,11 +182,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_nickname`, `user_pass`, `user_type`, `user_realname`, `user_class`, `user_phone`, `user_email`, `user_createtime`, `user_lastlogin`, `user_lastfaillogin`, `user_group`, `user_lastfile`, `user_lastmessage`, `user_lastip`) VALUES
-(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '2015-09-10 00:00:06', NULL, 0, '2015-09-07 12:02:44', '2015-09-09 15:25:25', '192.168.1.104'),
-(16, '测试员', '*A5598B808C0F9532C02390633521C53ADA41654A', 0, '测试', '法', '13533333333', 'h@d', '2015-08-25 01:32:41', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00', ''),
-(17, 'fff', '*748A64860BBBCF47FEC51C21756E579E70707ED7', 0, 'f', 'f', '13422222222', 'd@d', '2015-08-29 16:37:03', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00', ''),
-(18, 'ttt', '*6F021E72032DB29F9DA5E7ED9708305F5D82F769', 0, 't', 't', '12345678901', 'f@f', '2015-08-29 16:59:44', '0000-00-00 00:00:00', NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00', ''),
-(19, 'rrr', '*4EF9C32D3E8E72F010A4842267F7C1971BC6E347', 0, 'r', 'r', '13422222222', 'f@f', '2015-08-30 15:26:23', NULL, NULL, 0, '1999-12-31 16:00:00', '1999-12-31 16:00:00', '');
+(15, 'hzh', '*A5598B808C0F9532C02390633521C53ADA41654A', 1, '何子昊', '无45', '13522200713', 'hzh_1996@sina.com', '2015-08-24 14:00:26', '2015-09-10 08:51:32', '2015-09-10 08:51:27', 0, '2015-09-07 12:02:44', '2015-09-09 15:25:25', '192.168.1.103');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

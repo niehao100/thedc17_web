@@ -22,6 +22,8 @@ class Intro extends Controller
         $mess=fread($myfile,filesize(APP . 'view/intro/rule.md'));
         $info=Parsedown::instance()->text($mess); 
         require APP . 'view/intro/rule.php';
+        require APP . 'view/_templates/middle.php';
+        require APP . 'view/intro/rule.php';
         require APP . 'view/_templates/footer.php';
     }
 }
