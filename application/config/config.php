@@ -56,6 +56,6 @@ define('openpre',0);
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'thedc17');
-define('DB_USER', 'root');
-define('DB_PASS', 'toor');
+define('DB_USER', 'thedc17');
+define('DB_PASS', '******');
 define('DB_CHARSET', 'utf8');

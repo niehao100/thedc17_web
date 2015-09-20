@@ -343,6 +343,7 @@ function getname($i)
 
 <div class="container">
    <div class="row" >
+   <?php /*
 <div class="visible-xs col-xs-12" id="myCarouse3">
    <div id="myCarousel" class="carousel slide">
    <!-- 轮播（Carousel）指标 -->
@@ -372,7 +373,7 @@ $('#myCarousel').carousel({
 
 </script>
 <br>
-</div>
+</div>*/?>
       <div id="leftinfo" class="col-xs-12 col-sm-3 col-lg-3 col-md-3" >
          
          
@@ -449,14 +450,14 @@ $('#myCarousel').carousel({
       </div>
  <!--          style="background-color: #dedef8;box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" -->
   <script type="text/javascript">
-  var rootpath2="thedc";
+  var rootpath2="";
 	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")!=rootpath2){
 		document.getElementById('leftinfo').style.display = "none";
 		document.getElementById('myCarouse3').setAttribute('class','hidden'); 
 	}
   </script>
   
-    <div class="hidden-xs col-sm-8 col-lg-8 col-xs-8" >
+    <div class=" col-sm-8 col-lg-8 col-xs-8" >
         
       
    

@@ -857,7 +857,7 @@ class Parsedown
                 'alignments' => $alignments,
                 'identified' => true,
                 'element' => array(
-                    'name' => 'table',
+                    'name' => 'table class="table table-striped"',
                     'handler' => 'elements',
                 ),
             );
@@ -1153,7 +1153,7 @@ class Parsedown
         $Inline = array(
             'extent' => $Link['extent'] + 1,
             'element' => array(
-                'name' => 'img',
+                'name' => 'img class="img-thumbnail"',
                 'attributes' => array(
                     'src' => $Link['element']['attributes']['href'],
                     'alt' => $Link['element']['text'],
@@ -1165,7 +1165,7 @@ class Parsedown
 
         unset($Inline['element']['attributes']['href']);
 
-        return $Inline;
+        return $Inline ;
     }
 
     protected function inlineLink($Excerpt)
