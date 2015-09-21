@@ -83,13 +83,25 @@ function getname($i)
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
       </button>
-   
+            
       <a class="navbar-brand" href="<?php echo URL; ?>"><strong>第17届电设比赛</strong></a>
    </div>
 <div class="collapse navbar-collapse" id="example-navbar-collapse">
       
 <?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                 介绍
+               <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="<?php echo URL."intro/rule"?>">比赛规则</a></li>
+               <li><a href="<?php echo URL."intro/thedc"?>">科协介绍</a></li>
+              <li><a href="<?php echo URL."intro/hardware"?>">电设概况</a></li>
+            </ul>
+         </li>
+         
          <li><a data-toggle="modal" href="#registermodal">注册</a></li>
          <li><a data-toggle="modal" href="#loginmodal">登录</a></li>
       </ul>
@@ -373,9 +385,58 @@ $('#myCarousel').carousel({
 
 </script>
 <br>
+<div class="col-sm-4 col-md-4 col-lg-4 ">
+          <div class="thumbnail">
+            <a href="<?php echo URL."intro/rule"?>" title="比赛规则" ><img src="<?php echo URL."img/rule.jpg"?>"></a>
+            <div class="caption">
+              <h3> 
+                <a href="<?php echo URL."intro/rule"?>" title="比赛规则">比赛规则<br></a>
+              </h3>
+              <p>
+              本次电设比赛趣味性强，拥有10余种陷阱类、攻击类、防御类道具，极大的增加了比赛的观赏性和挑战性。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 ">
+          <div class="thumbnail">
+          <a href="<?php echo URL."intro/thedc"?>" title="自动化系科协" ><img src="<?php echo URL."img/asta.jpg"?>"></a>
+            <hr/>
+            <a href="<?php echo URL."intro/thedc"?>" title="电子系科协" ><img src="<?php echo URL."img/ee.jpg"?>"></a>
+                
+            <div class="caption">
+              <h3> 
+                <a href="<?php echo URL."intro/thedc"?>" title="科协介绍">科协介绍<br></a>
+              </h3>
+              <p>
+         历届电设大赛由电子系科协和自动化系科协共同承办，由两系同学一起构思、设计直至成功举办。
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-4 col-md-4 col-lg-4 ">
+          <div class="thumbnail">
+            <a href="<?php echo URL."intro/hardware"?>" title="电设概况" ><img src="<?php echo URL."img/logo.png"?>" ></a>
+            <div class="caption">
+              <h3> 
+                <a href="<?php echo URL."intro/hardware"?>" title="电设概况">电设概况<br></a>
+              </h3>
+              <p>
+              电设自1999年开办以来，今年已经是第17个年头，在历届大赛的组织和竞赛过程中，很多领导和老师亲临现场提出了许多关键性的指导和精辟的点评意见，使参赛选手受益匪浅。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        
 </div>
-      <div id="leftinfo" class="col-xs-12 col-sm-3 col-lg-3 col-md-3" >
-         
+<?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
+        <div id="leftinfo" class="hidden">
+<?php }else{?>
+      <div id="leftinfo" class="col-xs-12 col-sm-3 col-lg-3 col-md-3 " >
+<?php }?>
          
          <div class="list-group">
    <span class="list-group-item active">
@@ -454,8 +515,13 @@ $('#myCarousel').carousel({
    </span>
    
    <a href="<?php echo URL;?>intro/rule" class="list-group-item">
-      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;规则</p>
-      
+      <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;比赛规则</p>  
+   </a>
+   <a href="<?php echo URL;?>intro/thedc" class="list-group-item">
+        <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;科协介绍</p>
+   </a>
+   <a href="<?php echo URL;?>intro/hardware" class="list-group-item">
+        <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;电设概况</p>
    </a>
 </div>
 
@@ -468,8 +534,12 @@ $('#myCarousel').carousel({
 		document.getElementById('myCarouse3').setAttribute('class','hidden'); 
 	}
   </script>
-  
-    <div class="hidden-xs col-sm-8 col-lg-8 col-xs-8" >
+  <?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
+    <div class="hidden-xs col-sm-12 col-lg-12 " >
+  <?php }else{?>
+    <div class="hidden-xs col-sm-8 col-lg-8" >
+    
+    <?php }?>
         
       
    

@@ -11,7 +11,7 @@ nav
 
 body
 {
-	padding-top: 80px;
+	padding-top: 60px;
 }
 .navbar-brand
 {
@@ -59,3 +59,4 @@ textarea
 }
 .tindent p{ text-indent:2em}
 .tindent p img{ text-indent:0em; max-width: 80%;}
+

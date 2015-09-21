@@ -1,4 +1,4 @@
-<div class="modal fade" id="registerSuccessModal" tabindex="-1" role="dialog" >
+<div class="modal fade" id="messageuploadSuccessModal" tabindex="-1" role="dialog" >
    <div class="modal-dialog">
    
       <div class="modal-content">
@@ -19,6 +19,6 @@
 </div><!-- /.modal -->
 <script>
 $(function () { 
-	$('#registerSuccessModal').modal('show');
+	$('#messageuploadSuccessModal').modal('show');
  });
 </script>

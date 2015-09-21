@@ -26,4 +26,30 @@ class Intro extends Controller
         require APP . 'view/intro/rule.php';
         require APP . 'view/_templates/footer.php';
     }
+    
+    public function thedc()
+    {
+        // load views
+        require APP . 'view/_templates/header.php';
+        $myfile = fopen(APP . 'view/intro/thedc.md', "r") or die("Unable to open file!");
+        $mess=fread($myfile,filesize(APP . 'view/intro/thedc.md'));
+        $info=Parsedown::instance()->text($mess);
+        require APP . 'view/intro/thedc.php';
+        require APP . 'view/_templates/middle.php';
+        require APP . 'view/intro/thedc.php';
+        require APP . 'view/_templates/footer.php';
+    }
+    
+    public function hardware()
+    {
+        // load views
+        require APP . 'view/_templates/header.php';
+        $myfile = fopen(APP . 'view/intro/hardware.md', "r") or die("Unable to open file!");
+        $mess=fread($myfile,filesize(APP . 'view/intro/hardware.md'));
+        $info=Parsedown::instance()->text($mess);
+        require APP . 'view/intro/hardware.php';
+        require APP . 'view/_templates/middle.php';
+        require APP . 'view/intro/hardware.php';
+        require APP . 'view/_templates/footer.php';
+    }
 }

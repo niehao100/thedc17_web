@@ -1,4 +1,4 @@
-<div class="modal fade" id="changeSuccessModal" tabindex="-1" role="dialog" >
+<div class="modal fade" id="changeFailModal" tabindex="-1" role="dialog" >
    <div class="modal-dialog">
    
       <div class="modal-content">
@@ -19,6 +19,6 @@
 </div><!-- /.modal -->
 <script>
 $(function () { 
-	$('#changeSuccessModal').modal('show');
+	$('#changeFailModal').modal('show');
  });
 </script>
