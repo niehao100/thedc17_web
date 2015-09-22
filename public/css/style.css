@@ -60,3 +60,18 @@ textarea
 .tindent p{ text-indent:2em}
 .tindent p img{ text-indent:0em; max-width: 80%;}
 
+#url_info {
+display: block;
+position: fixed;
+right: 0;
+bottom: 50%;
+width: 130px;
+padding:5px 5px 15px 5px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+background: #3B9DD6;
+color: #E8E8E8;
+z-index:100;
+	text-align:center
+}

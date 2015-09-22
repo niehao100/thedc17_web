@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	var rootpath="http://"+location.hostname+"";
 	var modalstate =0;
+	$('#info_close').click(function(){
+		document.getElementById("url_info").style.display="none";
+	});
+	
 	$('.selectpicker').selectpicker();
 	$("[data-toggle='popover']").popover();
 	// $("#loginAlert").alert('close');
