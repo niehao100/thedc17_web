@@ -43,7 +43,7 @@ function handlestr($str)
     $str=str_replace(">", "&gt;", $str);
     //$str=str_replace("\n", "<br>", $str);
     $Parsedown = new Parsedown();
-    return str_replace(" ", "&nbsp;",$Parsedown->text($str));
+    return $Parsedown->text($str);
 }
 
 function handlestr2($str)
@@ -357,7 +357,7 @@ function getname($i)
 <div class="container">
    <div class="row" >
 
-<div class="visible-xs col-xs-12" id="myCarouse3">
+<div class="hidden" id="myCarouse3">
    <div id="myCarousel" class="carousel slide">
    <!-- 轮播（Carousel）指标 -->
    <ol class="carousel-indicators">
@@ -437,7 +437,7 @@ $('#myCarousel').carousel({
 <?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
         <div id="leftinfo" class="hidden">
 <?php }else{?>
-      <div id="leftinfo" class="col-xs-12 col-sm-3 col-lg-3 col-md-3 " >
+      <div id="leftinfo" class="hidden-xs col-sm-3 col-lg-3 col-md-3" >
 <?php }?>
          
          <div class="list-group">
@@ -531,9 +531,9 @@ $('#myCarousel').carousel({
  <!--          style="background-color: #dedef8;box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" -->
   <script type="text/javascript">
   var rootpath2="";
-	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")!=rootpath2){
-		document.getElementById('leftinfo').style.display = "none";
-		document.getElementById('myCarouse3').setAttribute('class','hidden'); 
+	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")==rootpath2){
+		document.getElementById('leftinfo').setAttribute('class',"col-xs-12 col-sm-3 col-lg-3 col-md-3");
+		document.getElementById('myCarouse3').setAttribute('class','visible-xs col-xs-12'); 
 	}
   </script>
   <?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
