@@ -2,6 +2,7 @@
 <p id="info_close"><button type="button" class="close"  >&times;</button></p>
 <p>扫描官方微信号</p>
 <img  src="../img/barcode.bmp">
+<p>QQ交流群203207704</p>
 </div>
 
 <div id="myCarouse2" class="carousel slide">

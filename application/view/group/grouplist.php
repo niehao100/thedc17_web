@@ -1,5 +1,5 @@
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" style="overflow-y:scroll; height:100px;">
    <caption>共<?php if(isset($res) && $res!=null){echo count($res);}else{echo '0';}?>支队伍</caption>
    <thead>
       <tr>
@@ -13,6 +13,7 @@
    </thead>
    <?php if(isset($res) && $res!=null){?>
    <tbody>
+         
    <?php for($i=0;$i<count($res);++$i){ ?>
    <tr>
          <td><?php echo 1+$i;?></td>
