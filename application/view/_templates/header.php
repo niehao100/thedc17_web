@@ -532,7 +532,10 @@ $('#myCarousel').carousel({
   <script type="text/javascript">
   var rootpath2="";
 	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")==rootpath2){
-		document.getElementById('leftinfo').setAttribute('class',"col-xs-12 col-sm-3 col-lg-3 col-md-3");
+		if (document.getElementById('leftinfo').className!="hidden")
+		{
+			document.getElementById('leftinfo').setAttribute('class',"col-xs-12 col-sm-3 col-lg-3 col-md-3");
+		}
 		document.getElementById('myCarouse3').setAttribute('class','visible-xs col-xs-12'); 
 	}
   </script>
