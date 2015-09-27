@@ -22,6 +22,16 @@ class groupModel
         }
         if ($this->isgroupleader() || $this->isgroupmember())
             return;
+        
+        $sql = "select count(*) from group_req where req_owner=:owner and req_groupid=:id";
+        $parameters = array(":owner" => $_SESSION['username'],":id" => $id);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        if ($query->fetch(PDO::FETCH_NUM)[0]>0)
+        {
+            return;
+        }
+        
         $sql = "INSERT INTO `group_req`(`req_owner`, `req_groupid`, `req_content`, `req_status`) VALUES(:owner,:id,:content,:status)";
         $parameters = array(":owner" => $_SESSION['username'],":id" => $id
             ,":content" => "",":status" => 0

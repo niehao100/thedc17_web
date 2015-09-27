@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	var rootpath="http://"+location.hostname+"";
 	var modalstate =0;
@@ -129,8 +130,14 @@ $(document).ready(function() {
 		    		var date=new Date(); 
 	    			date.setTime(date.getTime()-10000); 
 	    			document.cookie="autologin="+obj.cookie+";expires="+date.toGMTString();
-	    			
+	    			if (3==obj.wrongtime)
+	    			{
+	    				document.getElementById('loginAlert').innerHTML ="<strong>输错超过3次，请5分钟后再次尝试。</strong>";
+	    			}else{
+	    				document.getElementById('loginAlert').innerHTML ="<strong>用户不存在或密码错误！还可尝试"+(3-obj.wrongtime).toString()+"次。</strong>";
+	    			}
 	    			$("#loginAlert").attr("class","alert alert-warning fade in");
+	    			
 		    	}
 		    }
 		  });
@@ -185,6 +192,53 @@ $(document).ready(function() {
             }
         }
 	});
+	$('#resetform').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	resetusername:{
+                validators: {
+                    notEmpty: {
+                        message: '昵称不能为空'
+                    },
+                    regexp: {
+                        regexp: /^[^%'"?*,]+$/,
+                        message: '用户名不能出现特殊字符'
+                    },
+                    remote: {
+		                message: '用户不存在',
+		                url: rootpath+'/user/checkUser2'
+		            }
+                }
+            },
+            resetmail: {
+                validators:{
+                    notEmpty: {
+                        message: '邮箱不能为空'
+                    },
+                    emailAddress: {
+                        message: '邮箱格式错误'
+                    }
+                }
+            },
+            vc:{
+            	validators:{
+            		notEmpty: {
+                        message: '验证码不能为空'
+                    },
+		            remote: {
+		                message: '验证码错误',
+		                url: rootpath+'/user/checkVc'
+		            }
+            	}
+            }
+        }
+	});
+	
 	$('#forumupload').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -255,13 +309,21 @@ $(document).ready(function() {
                     remote: {
 		                message: '队伍名已存在',
 		                url: rootpath+'/group/checkgroup'
-		            }
+		            },
+		            stringLength: {
+                        max: 20,
+                        message: '长度过长'
+                    }
                 }
             },
             groupchant:{
             	validators: {
                     notEmpty: {
                         message: '队伍口号不能为空'
+                    },
+		            stringLength: {
+                        max: 20,
+                        message: '长度过长'
                     }
                 }
             },

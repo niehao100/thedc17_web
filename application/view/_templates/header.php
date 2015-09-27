@@ -19,9 +19,19 @@
     <script src="<?php echo URL; ?>js/bootstrap-select.min.js" charset="utf-8"></script>
     
 </head>
-<body>
-<?php
+<body> 
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8" charset="utf-8"></script> 
+<script>
+var rootpath3="http://"+location.hostname+"";
+$.post(rootpath3+'/user/ipstatistic',
+		  {
+		    ip:returnCitySN.cip,
+		    city:returnCitySN.cname,
+		  },
+		  function(data,status){});
 
+</script>
+<?php
 require APP . 'controller/Parsedown.php';
 if (!isset($_SESSION)) {
     session_start();
@@ -282,7 +292,9 @@ function getname($i)
             <label>
                <input id="rememberme" name="rememberme" type="checkbox"> 请记住我
             </label>
+            <a class="pull-right" href="<?php echo URL."user/resetpass"?>">找回密码</a>
          </div>
+
       </div>
    </div>
    <div class="modal-footer ">
@@ -530,6 +542,7 @@ $('#myCarousel').carousel({
       </div>
  <!--          style="background-color: #dedef8;box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" -->
   <script type="text/javascript">
+  
   var rootpath2="";
 	if (document.body.clientWidth<768 && window.location.pathname.replace(/\//g, "")==rootpath2){
 		if (document.getElementById('leftinfo').className!="hidden")

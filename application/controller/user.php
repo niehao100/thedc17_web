@@ -88,6 +88,18 @@ class User extends Controller
             echo json_encode(array('valid' => true));
         }
     }
+    public function checkUser2()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if ($this->usermodel->isUserExist($_GET['resetusername']))
+        {
+            echo json_encode(array('valid' => true));
+        }else{
+            echo json_encode(array('valid' => false));
+        }
+    }
     public function logout()
     {
         if (!isset($_SESSION)) {
@@ -119,12 +131,88 @@ class User extends Controller
         }
         
     }
+    public function resetpass()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_SESSION['login']))
+        {
+            if ($_SESSION['login']==true)
+                header("location:".URL);
+        }
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/user/resetpass.php';
+        require APP . 'view/_templates/middle.php';
+        require APP . 'view/user/resetpass.php';
+        require APP . 'view/_templates/footer.php';
+    }
+    public function ipstatistic()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $filename2="ip.dat";
+        if(!isset($_SESSION['totalip']))
+        {
+            $_SESSION['totalip'] = true;
+            $fp2 = fopen($filename2,"a+");
+            fwrite($fp2, date("[Y-m-d H:i:s] ").$_POST['ip']." ".$_POST['city']."\n");
+            fclose($fp2);
+        }
+    }
+    public function exresetpass()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_SESSION['login']))
+        {
+            if ($_SESSION['login']==true)
+                header("location:".URL);
+        }
+        if (strtolower($_POST['vc'])!=$_SESSION['authnum_session'])
+        {
+            header("location:".URL);
+            return;
+        }
+        if (!$this->usermodel->isUserExist($_POST['resetusername']))
+        {
+            header("location:".URL);
+            return;
+        }
+        if ($this->usermodel->resetpass($_POST['resetusername'],$_POST['resetmail']))
+        {
+            $paneltype="panel-success";
+            $panelinfo="新密码已经发送到您的邮箱，请查收。";
+        }else{
+            $paneltype="panel-danger";
+            $panelinfo="邮箱与用户注册时不符，请重试。";
+        }
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/user/resetpass.php';
+        require APP . 'view/_templates/middle.php';
+        require APP . 'view/user/resetpass.php';
+        require APP . 'view/_templates/footer.php';
+    }
     public function login()
     {
         if (!isset($_SESSION)) {
             session_start();
         }
-        
+        if (isset($_SESSION['wrongtime']))
+        {
+            if ($_SESSION['wrongtime']>=maxwrong)
+            {
+                if (time()-$_SESSION['trytime']<5*60)
+                {
+                    $_SESSION['trytime']=time();
+                    $arr = array ('cookie'=>"",'status'=>"用户名不存在或密码错误",'wrongtime'=>$_SESSION['wrongtime']);
+                    echo json_encode($arr);
+                    return;
+                }
+            }
+        }
         if (!isset($_POST['ajax']) && isset($_COOKIE['autologin'])&&$_COOKIE['autologin']!="")
         {
             
@@ -146,9 +234,26 @@ class User extends Controller
             }
             $arr = array ('cookie'=>$co,'status'=>"success");
             $_SESSION['notauto']=false;
+            $_SESSION['wrongtime']=0;
             echo json_encode($arr);
         }else{
-            $arr = array ('cookie'=>"",'status'=>"用户名不存在或密码错误");
+            if (!isset($_SESSION['wrongtime']))
+            {
+                $_SESSION['wrongtime']=1;
+            }else{
+                if ($_SESSION['wrongtime']>=maxwrong)
+                {
+                    if (time()-$_SESSION['trytime']>=5*60)
+                    {
+                        $_SESSION['wrongtime']=1;
+                    }
+                }else{
+                    $_SESSION['wrongtime']++;
+                    if ($_SESSION['wrongtime']==maxwrong)
+                        $_SESSION['trytime']=time();
+                }
+            }
+            $arr = array ('cookie'=>"",'status'=>"用户名不存在或密码错误",'wrongtime'=>$_SESSION['wrongtime']);
             echo json_encode($arr);
         }
     }

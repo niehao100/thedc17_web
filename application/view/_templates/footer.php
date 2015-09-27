@@ -14,7 +14,7 @@ if(!isset($_SESSION['totalguest']))
 {
     $_SESSION['totalguest'] = true;
     $filename="counter.dat";
-    $filename2="ip.dat";
+    
     if (file_exists($filename))
     {
         $counter = json_decode(file_get_contents($filename),true);
@@ -43,8 +43,6 @@ if(!isset($_SESSION['totalguest']))
         fclose($fp);
         echo "总访问量：".$total."&nbsp;今日访问量：".$today;
     }
-    $fp2 = fopen($filename2,"a+");
-    fwrite($fp2, date("[Y-m-d H:i:s] ").$_SERVER['REMOTE_ADDR']."\n");
 }else{
     $filename="counter.dat";
     if (file_exists($filename))
