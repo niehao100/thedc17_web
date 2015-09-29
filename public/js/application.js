@@ -322,7 +322,7 @@ $(document).ready(function() {
                         message: '队伍口号不能为空'
                     },
 		            stringLength: {
-                        max: 20,
+                        max: 30,
                         message: '长度过长'
                     }
                 }

@@ -1143,14 +1143,24 @@ class Parsedown
 
         $Excerpt['text']= substr($Excerpt['text'], 1);
 
-        $Link = $this->inlineLink($Excerpt);
+        $Link = $this->inlineLink($Excerpt,1);
 
         if ($Link === null)
         {
             return;
         }
-        $Link['element']['attributes']['href']=URL.'img/'.$Link['element']['attributes']['href'];
-
+        
+        if (strpos($Link['element']['attributes']['href'], "/")===false)
+        {
+            $Link['element']['attributes']['href']=URL.'img/'.$Link['element']['attributes']['href'];
+        }else {
+            if (strpos($Link['element']['attributes']['href'],"http")===false || strpos($Link['element']['attributes']['href'],"http")!=0)
+            {
+                $Link['element']['attributes']['href']="http://".$Link['element']['attributes']['href'];
+            }
+        }
+            
+        
         $Inline = array(
             'extent' => $Link['extent'] + 1,
             'element' => array(
@@ -1169,7 +1179,7 @@ class Parsedown
         return $Inline ;
     }
 
-    protected function inlineLink($Excerpt)
+    protected function inlineLink($Excerpt,$status=0)
     {
         $Element = array(
             'name' => 'a',
@@ -1232,10 +1242,13 @@ class Parsedown
 
             $Element['attributes']['href'] = $Definition['url'];
             $Element['attributes']['title'] = $Definition['title'];
+
         }
 
         $Element['attributes']['href'] = str_replace(array('&', '<'), array('&amp;', '&lt;'), $Element['attributes']['href']);
-
+        
+        if ($status==0 && (strpos($Element['attributes']['href'],"http")===false || strpos($Element['attributes']['href'],"http")!=0))
+        {$Element['attributes']['href']="http://".$Element['attributes']['href'];}
         return array(
             'extent' => $extent,
             'element' => $Element,

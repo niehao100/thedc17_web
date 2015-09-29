@@ -381,7 +381,7 @@ function getname($i)
    <div class="carousel-inner">
    <?php for ($i=1;;$i++){if (file_exists("img/slide".$i.".jpg")){?>
       <div class="item<?php if ($i==1){?> active<?php }?>">
-         <img src="<?php echo URL."img/slide".$i.".jpg?".mt_rand();?>" alt="A slide">
+         <img src="<?php echo URL."img/slide".$i.".jpg";?>" alt="A slide">
       </div>
    <?php }else{break;}}?>
    </div>
@@ -401,7 +401,7 @@ $('#myCarousel').carousel({
 <?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
 <div class="col-sm-4 col-md-4 col-lg-4 ">
           <div class="thumbnail">
-            <a href="<?php echo URL."intro/rule"?>" title="比赛规则" ><img src="<?php echo URL."img/rule.jpg?".mt_rand();?>"></a>
+            <a href="<?php echo URL."intro/rule"?>" title="比赛规则" ><img src="<?php echo URL."img/rule.jpg";?>"></a>
             <div class="caption">
               <h3> 
                 <a href="<?php echo URL."intro/rule"?>" title="比赛规则">比赛规则<br></a>
@@ -415,9 +415,9 @@ $('#myCarousel').carousel({
 
         <div class="col-sm-4 col-md-4 col-lg-4 ">
           <div class="thumbnail">
-          <a href="<?php echo URL."intro/thedc"?>" title="自动化系科协" ><img src="<?php echo URL."img/asta.jpg?".mt_rand();?>"></a>
-            <hr/>
-            <a href="<?php echo URL."intro/thedc"?>" title="电子系科协" ><img src="<?php echo URL."img/ee.jpg?".mt_rand();?>"></a>
+          <a href="<?php echo URL."intro/thedc"?>" title="自动化系科协" ><img src="<?php echo URL."img/asta.jpg";?>"></a>
+            
+            <a href="<?php echo URL."intro/thedc"?>" title="电子系科协" ><img src="<?php echo URL."img/ee.jpg";?>"></a>
                 
             <div class="caption">
               <h3> 
@@ -432,7 +432,7 @@ $('#myCarousel').carousel({
         
         <div class="col-sm-4 col-md-4 col-lg-4 ">
           <div class="thumbnail">
-            <a href="<?php echo URL."intro/hardware"?>" title="电设概况" ><img src="<?php echo URL."img/logo.png?".mt_rand();?>" ></a>
+            <a href="<?php echo URL."intro/hardware"?>" title="电设概况" ><img src="<?php echo URL."img/logo.png";?>" ></a>
             <div class="caption">
               <h3> 
                 <a href="<?php echo URL."intro/hardware"?>" title="电设概况">电设概况<br></a>
