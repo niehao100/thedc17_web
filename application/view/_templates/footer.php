@@ -56,6 +56,7 @@ if(!isset($_SESSION['totalguest']))
 }
 
 ?>
-    <br>designed by 电设网站组</div>
-</body>
+    <br>designed by 电设网站组 <a href="http://www.zerouav.com/" target="_blank"><img class="roundpng" src="<?php echo URL."img/zerotech.png"?>"></a></div>
+
+    </body>
 </html>

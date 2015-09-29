@@ -19,7 +19,12 @@ class Application
     {
         // create array with URL parts in $url
         $this->splitUrl();
-
+        
+        if ($this->url_controller=="favicon.ico")
+        {
+            header("location:".URL."img/favicon.ico");
+            return;
+        }
         // check for controller: no controller given ? then load start-page
         if (!$this->url_controller) {
 

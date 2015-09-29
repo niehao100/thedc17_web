@@ -75,3 +75,7 @@ color: #E8E8E8;
 z-index:100;
 	text-align:center
 }
+
+.roundpng{
+	border-radius:10px;
+}
