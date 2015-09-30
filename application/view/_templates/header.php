@@ -381,7 +381,7 @@ function getname($i)
    <div class="carousel-inner">
    <?php for ($i=1;;$i++){if (file_exists("img/slide".$i.".jpg")){?>
       <div class="item<?php if ($i==1){?> active<?php }?>">
-         <img src="<?php echo URL."img/slide".$i.".jpg";?>" alt="A slide">
+         <img src="<?php echo URL."img/slide".$i.".jpg?".mt_rand();?>" alt="A slide">
       </div>
    <?php }else{break;}}?>
    </div>
