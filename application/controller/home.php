@@ -23,13 +23,18 @@ class Home extends Controller
         if (isset($_SESSION['notauto']) && $_SESSION['notauto']==true)
         {
             //$_SESSION['notauto']=false;
-        }else{
+        }elseif (isset($_SESSION['autolog'])&& $_SESSION['autolog']==false){
+            
+        }
+        else{
+        
             if (isset($_COOKIE['autologin']) && $_SESSION['login']!=true)
             {
                 header("Location:".URL.'/user/login'); 
                 exit;
             }
         }
+        
         require APP . 'view/_templates/header.php';
         if (isset($_SESSION['status'])&& $_SESSION['status']!="")
         {

@@ -274,6 +274,13 @@ class User extends Controller
             if ($this->usermodel->checkautologin($_COOKIE['autologin']))
             {
                 header("Location:".URL);
+                $_SESSION["autolog"]=true;
+                exit;
+            }else{
+                setcookie("autologin","",time()-3600);
+                $_SESSION["autolog"]=false;
+                header("Location:".URL);
+                
                 exit;
             }
         } 
