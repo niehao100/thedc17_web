@@ -4,9 +4,6 @@
 * 开学前完成论坛(通知)和组队功能
 * 十一左右完成网站的前端美化并上线
 
-
-[![MINI - A naked barebone PHP application](_install/mini.png)](http://www.php-mini.com)
-
 # MINI
 
 MINI is an extremely simple and easy to understand skeleton PHP application, reduced to the max.
