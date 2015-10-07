@@ -272,8 +272,18 @@ class userModel
             $_SESSION['login']=true;
             $_SESSION['username']=$user;
             $_SESSION['type']=$res[1];
+            
+            $sql = "update user set user_lastlogin='".date('Y-m-d H:i:s',time())."',user_lastip='".$_SERVER['REMOTE_ADDR']."' where user_nickname=:nick";
+            $parameters = array(':nick' => $user);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            
             return true;
         }else{
+            $sql = "update user set user_lastfaillogin='".date('Y-m-d H:i:s',time())."' where user_nickname=:nick";
+            $parameters = array(':nick' => $user);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
             return false;
         }
     }
@@ -286,6 +296,21 @@ class userModel
         $query->execute($parameters);
         return true;
     }
-
+    public function updateip()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_SESSION['login']) && isset($_SESSION['ipaddress']))
+        {
+            if ($_SESSION['login']==true)
+            {
+                $sql = "update user set user_lastip='".$_SESSION['ipaddress']."' where user_nickname=:nick";
+                $parameters = array(':nick' => $_SESSION['username']);
+                $query = $this->db->prepare($sql);
+                $query->execute($parameters);
+            }
+        }
+    }
 }
 ?>

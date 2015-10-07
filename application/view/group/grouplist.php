@@ -1,6 +1,6 @@
 <div class="table-responsive">
 <table class="table table-striped" style="overflow-y:scroll; height:100px;">
-   <caption>共<?php if(isset($res) && $res!=null){echo count($res);}else{echo '0';}?>支队伍</caption>
+   <caption>共<?php if(isset($res) && $res!=null){echo 1+count($res);}else{echo '1';}?>支队伍</caption>
    <thead>
       <tr>
          <th>#</th>
@@ -11,9 +11,20 @@
          <?php if (!$ismember && !$isleader){echo "<th>操作</th>";}?>
       </tr>
    </thead>
+    <tbody>
+<!-- 不要奇怪，这是管理员们的队伍。 -->
+   <tr class="success">
+         <td><?php echo "0";?></td>
+         <td><?php echo "同志们辛苦了";?></td>
+         <td><?php echo "neil";?></td>
+         <td><?php echo "xumy13,路过打酱油的,wengzhe,ILT";?></td>
+         <td><?php echo "为人民服务！";?></td>
+         <?php if (!$ismember && !$isleader){echo "<td></td>";}?>
+   </tr>
+
+   
    <?php if(isset($res) && $res!=null){?>
-   <tbody>
-         
+   
    <?php for($i=0;$i<count($res);++$i){ ?>
    <tr>
          <td><?php echo 1+$i;?></td>

@@ -211,9 +211,11 @@ class User extends Controller
         if(!isset($_SESSION['totalip']))
         {
             $_SESSION['totalip'] = true;
+            $_SESSION['ipaddress']=$_POST['ip'];
             $fp2 = fopen($filename2,"a+");
             fwrite($fp2, date("[Y-m-d H:i:s] ").$_POST['ip']." ".$_POST['city']."\n");
             fclose($fp2);
+            $this->usermodel->updateip();
         }
     }
     public function exresetpass()
