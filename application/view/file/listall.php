@@ -22,6 +22,8 @@
          <td><?php echo date('m-d H:i',strtotime($res[$i]['file_uploadtime']));?></td>
          <?php if (isset($_SESSION['username']) &&$_SESSION['username']==$res[$i]['file_owner']){?>
             <td><a href="<?php echo URL."file/delete/".$res[$i]['file_name'];?>">删除</a></td>
+         <?php }elseif(isset($_SESSION['type']) && $_SESSION['type']=='1'){?>
+         <td></td>
          <?php }?>
 </tr>
       <?php }}}?>
