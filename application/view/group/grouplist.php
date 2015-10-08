@@ -8,7 +8,7 @@
          <th>队长</th>
          <th>队员</th>
          <th>口号</th>
-         <?php if (!$ismember && !$isleader){echo "<th>操作</th>";}?>
+         <?php if (!$ismember && !$isleader){echo "<th>操作</th>";}else{echo "<th>状态</th>";}?>
       </tr>
    </thead>
     <tbody>
@@ -19,7 +19,7 @@
          <td><?php echo "neil";?></td>
          <td><?php echo "xumy13,路过打酱油的,wengzhe,ILT";?></td>
          <td><?php echo "为人民服务！";?></td>
-         <?php if (!$ismember && !$isleader){echo "<td></td>";}?>
+         <?php echo "<td></td>";?>
    </tr>
 
    
@@ -36,6 +36,7 @@
          if ($res[$i]['group_valid']=='0'){?>
              
              <td>人员已满</td>
+             
         <?php  }
          elseif (!$ismember && !$isleader){
          
@@ -66,7 +67,9 @@
             }
          ?>
 </tr>
-      <?php }}}?>
+      <?php }else {
+            echo "<td></td>";}
+}}?>
    </tbody>
 </table>
 </div>

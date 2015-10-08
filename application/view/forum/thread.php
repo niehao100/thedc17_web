@@ -13,7 +13,7 @@
               echo '平台报错';
               break;
               case '2':
-                  echo '战事汇报';
+                  echo '比赛讨论';
                   break;
   }
   ?></a></li>
