@@ -506,20 +506,23 @@ $('#myCarousel').carousel({
       </h4>
    </span>
    
+   <a href="<?php echo URL;?>forum/listall/2" class="list-group-item">
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;比赛讨论
+      </p>
+   </a>
+   
    <a href="<?php echo URL;?>forum/listall/0" class="list-group-item">
       <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;吐槽灌水</p>
       
    </a>
+   
    <a href="<?php echo URL;?>forum/listall/1" class="list-group-item">
       <p class="list-group-item-text">&nbsp;&nbsp;&nbsp;平台报错</p>
-      
    </a>
-   <a href="<?php echo URL;?>forum/listall/2" class="list-group-item">
-      <p class="list-group-item-text">
-         &nbsp;&nbsp;&nbsp;战事汇报
-      </p>
+   
      
-   </a>
+   
 </div>
 <div class="list-group">
    <span class="list-group-item active">

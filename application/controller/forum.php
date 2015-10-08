@@ -57,11 +57,13 @@ class Forum extends Controller
             header("location:".URL);
             return;
         }
+        /*
         if (isset($_SESSION['type']) && $_SESSION['type']=='0' && $_SESSION['forum_type']==2)
         {
             header("location:".URL);
             return;
         }
+        */
         $res=$this->forummodel->uploadsubject($_SESSION['forum_type']);
         header("location:".URL."forum/listall/".$_SESSION['forum_type']);
     }

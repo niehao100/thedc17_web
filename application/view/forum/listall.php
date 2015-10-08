@@ -40,13 +40,15 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+/*
 if ($type==2 && ((isset($_SESSION['type']) && $_SESSION['type']=='0')||!isset($_SESSION['type'])))
 {
 ?>
 <!-- 非管理员无法发布赛事信息。 -->
     <?php 
 }
-elseif (isset($_SESSION['login']) && $_SESSION['login']==true){
+elseif (isset($_SESSION['login']) && $_SESSION['login']==true){*/
+if (isset($_SESSION['login']) && $_SESSION['login']==true){
 ?>
 
 <fieldset > 
