@@ -49,20 +49,10 @@ $("#video1").click(function() {
 	var myVideo=document.getElementById("video1");
 	if (myVideo.paused) 
 	{
-		  $("#myCarouse2").carousel('pause');
-		  $("#prev").hide();
-		  $("#next").hide();
-		  $("#carlist").hide();
-		  myVideo.controls="controls";
 		  myVideo.play(); 
 	}
 		else 
 		{
-			$("#prev").show();
-			  $("#next").show();
-			  $("#carlist").show();
-			  myVideo.controls="";
-			$("#myCarouse2").carousel('cycle');
 		  myVideo.pause(); 
 		}
 });
@@ -71,14 +61,10 @@ $("#video1").bind("ended", function(event) {
 
 	var myVideo=document.getElementById("video1");
 	myVideo.currentTime=0;
-	$("#prev").show();
-	$("#next").show();
-	$("#carlist").show();
-	myVideo.controls="";
-	$("#myCarouse2").carousel('cycle');
+	myVideo.pause(); 
 	});
 $("#video1").bind("pause", function(event) { 
-
+	var myVideo=document.getElementById("video1");
 	$("#prev").show();
 	  $("#next").show();
 	  $("#carlist").show();
@@ -86,7 +72,7 @@ $("#video1").bind("pause", function(event) {
 	$("#myCarouse2").carousel('cycle');
 	});
 $("#video1").bind("play", function(event) { 
-
+	var myVideo=document.getElementById("video1");
 	$("#myCarouse2").carousel('pause');
 	  $("#prev").hide();
 	  $("#next").hide();
