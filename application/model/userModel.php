@@ -104,6 +104,7 @@ class userModel
         $mail->Port = 25; // SMTP服务器的端口号
         $mail->WordWrap=50;
         $mail->Username = "thedc17@sina.com"; // SMTP服务器用户名
+        
         $mail->Password = "Hardware"; // SMTP服务器密码
         $mail->SetFrom('thedc17@sina.com', '电子设计大赛官方邮箱');
         $mail->AddReplyTo("thedc17@sina.com","电子设计大赛官方邮箱");

@@ -491,11 +491,13 @@ $('#myCarousel').carousel({
    </a>
    <?php }?>
    <?php if (isset($_SESSION['type']) && $_SESSION['type']=='1'){?>
+<!--  
    <a href="<?php echo URL;?>message/massemail" class="list-group-item">
       <p class="list-group-item-text">
          &nbsp;&nbsp;&nbsp;群发邮件
       </p>
    </a>
+-->
    <?php }?>
    <a href="<?php echo URL;?>file/listall" class="list-group-item">
       <p class="list-group-item-text">

@@ -57,13 +57,19 @@ class messageModel
     }
     public function massemail()
     {
+       
+        
+        header("Content-Type: application/octet-stream");
+        header('Content-Disposition:attachment;filename="email.txt"');
+        
         if ($_POST['emailobj']==1)
         {
             $sql = "SELECT user_email FROM groups cross join user where groups.group_leader=user.user_nickname";
             $query = $this->db->prepare($sql);
             $query->execute();
             $to=$query->fetchAll(PDO::FETCH_NUM);
-            $this->postmail($to,$_POST['emaildecription'],$this->handlestr($_POST['inputtext']));
+            
+            //$this->postmail($to,$_POST['emaildecription'],$this->handlestr($_POST['inputtext']));
         }
         elseif ($_POST['emailobj']==2)
         {
@@ -71,7 +77,7 @@ class messageModel
             $query = $this->db->prepare($sql);
             $query->execute();
             $to=$query->fetchAll(PDO::FETCH_NUM);
-            $this->postmail($to,$_POST['emaildecription'],$this->handlestr($_POST['inputtext']));
+            //$this->postmail($to,$_POST['emaildecription'],$this->handlestr($_POST['inputtext']));
         }
         elseif ($_POST['emailobj']==3)
         {
@@ -79,8 +85,16 @@ class messageModel
             $query = $this->db->prepare($sql);
             $query->execute();
             $to=$query->fetchAll(PDO::FETCH_NUM);
-            $this->postmail($to,$_POST['emaildecription'],$this->handlestr($_POST['inputtext']));
+            //$this->postmail($to,$_POST['emaildecription'],$this->handlestr($_POST['inputtext']));
         }
+        for ($i=0;$i<count($to);++$i)
+        {
+            echo $to[$i][0]."\n";
+        }
+        echo "****************************************************\n\n";
+        echo "subject:\n".$_POST['emaildecription']."\n\n";
+        echo "content:\n".$this->handlestr($_POST['inputtext']);
+        exit;
     }
     public function updatetime()
     {
