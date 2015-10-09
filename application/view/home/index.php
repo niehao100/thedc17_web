@@ -40,10 +40,6 @@
 $('#myCarouse2').carousel({
   interval: 4000
 })
-</script>
-
-
-<script type="text/javascript">
 
 var myVideo=document.getElementById("video1");
 
