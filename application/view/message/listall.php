@@ -21,6 +21,8 @@
          <td><?php echo date('m-d H:i',strtotime($res[$i]['mess_uploadtime']));?></td>
          <?php if (isset($_SESSION['username']) &&$_SESSION['username']==$res[$i]['mess_owner']){?>
             <td><a href="<?php echo URL."message/delete/".$res[$i]['mess_id'];?>">删除</a></td>
+         <?php }elseif(isset($_SESSION['type']) && $_SESSION['type']=='1'){?>
+         <td></td>
          <?php }?>
 </tr>
       <?php }}}?>

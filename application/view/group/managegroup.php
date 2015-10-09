@@ -1,6 +1,6 @@
 <?php if ($isleader){?>
 <fieldset > 
-<legend>管理队伍</legend>
+<legend><?php echo $name;?><span class="label label-info pull-right"><?php if ($type!=0){echo getteamtype($type)."组";}else{echo "尚未选择组别";}?></span></legend>
 <div class="table-responsive">
 <table class="table table-striped">
    <thead>
@@ -56,7 +56,9 @@
 </fieldset>
 <?php }elseif ($ismember){?>
 <fieldset > 
-<legend>查看队伍</legend>
+<legend><?php echo $name;?><span class="label label-info pull-right"><?php if ($type!=0){echo getteamtype($type)."组";}else{echo "尚未选择组别";}?></span></legend>
+
+<div class="alert alert-success">队伍名：<?php echo $name;?><span class="pull-right"><?php if ($type!=0){echo getteamtype($type)."组";}else{echo "尚未选择组别";}?></span></div>
 <div class="table-responsive">
 <table class="table table-striped">
    <thead>
@@ -93,8 +95,34 @@
 </div>
 </fieldset>
 <?php }?>
+<?php if ($type==0 && $isleader){?>
 
-<?php if (openpre==1){if ($mytime==-1){?>
+<form class="form-horizontal" id="groupupload" role="form" action="<?php echo URL;?>group/changegrouptype" method="post">
+<div class="form-group">
+      <label  for="groupchant" class="col-sm-2 control-label">队伍组别</label>
+    <div class="col-sm-10">
+      <label class="checkbox-inline">
+      <input type="radio" name="grouptype" id="optionsRadios3" 
+         value="1" checked> 单片机
+   </label>
+   <label class="checkbox-inline">
+      <input type="radio" name="grouptype" id="optionsRadios4" 
+         value="2"> DSP
+   </label>
+           <label class="checkbox-inline">
+      <input type="radio" name="grouptype" id="optionsRadios4" 
+         value="3"> FPGA
+   </label>
+    </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" id="groupsubmit" class="btn btn-default">发布</button>
+      </div>
+   </div>
+</form>
+<?php }?>
+<?php if (openpre==1 && $isleader){if ($mytime==-1){?>
 <form class="form-horizontal" id="choosetime" role="form" action="<?php echo URL;?>group/settime" method="post">
 
    <div class="form-group">

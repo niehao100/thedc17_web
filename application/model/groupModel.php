@@ -89,6 +89,7 @@ class groupModel
         }
         return true;
     }
+    
     public function getrequest()
     {
         if (!isset($_SESSION)) {
@@ -129,9 +130,9 @@ class groupModel
         if (!isset($_SESSION)) {
             session_start();
         }
-        $sql = "INSERT INTO `groups`(`group_name`, `group_chant`, `group_leader`, `group_valid`) VALUES(:name,:chant,:leader,:valid)";
+        $sql = "INSERT INTO `groups`(`group_name`, `group_chant`, `group_leader`, `group_valid`,`group_type`) VALUES(:name,:chant,:leader,:valid,:type)";
         $parameters = array(':name' => $_POST['groupname'],':chant' => $_POST['groupchant'],
-            ':leader' => $_SESSION['username'],':valid' => 1
+            ':leader' => $_SESSION['username'],':valid' => 1,':type'=>$_POST['grouptype']
         );
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
@@ -193,6 +194,45 @@ class groupModel
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
         
+        return $query->fetch(PDO::FETCH_NUM)[0];
+    }
+    public function changegrouptype(){
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!$this->isgroupleader())
+        {
+            return;
+        }
+        if ($this->getgrouptype()!=0)
+        {
+            return;
+        }
+        $sql = "select req_groupid from group_req where req_owner=:name and (req_status=1 or req_status=3)";
+        $parameters = array(':name' => $_SESSION['username']);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        
+        $sql = "update groups set group_type=:type where group_id=:id";
+        $parameters = array(':type'=>$_POST['grouptype'],':id' => $query->fetch(PDO::FETCH_NUM)[0]);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+    }
+    public function getgrouptype()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $sql = "select req_groupid from group_req where req_owner=:name and (req_status=1 or req_status=3)";
+        $parameters = array(':name' => $_SESSION['username']);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+    
+        $sql = "select group_type from groups where group_id=:id";
+        $parameters = array(':id' => $query->fetch(PDO::FETCH_NUM)[0]);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+    
         return $query->fetch(PDO::FETCH_NUM)[0];
     }
     public function getgroupinfo()

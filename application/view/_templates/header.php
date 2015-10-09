@@ -32,7 +32,7 @@ $.post(rootpath3+'/user/ipstatistic',
 
 </script>
 <?php
-require APP . 'controller/Parsedown.php';
+require_once APP . 'controller/Parsedown.php';
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -66,7 +66,24 @@ function handlestr2($str)
 
     return $str;
 }
-
+function getteamtype($i)
+{
+    switch ($i)
+    {
+        case 1:
+            return "单片机";
+            break;
+        case 2:
+            return "DSP";
+            break;
+        case 3:
+            return "FPGA";
+            break;        
+        default:
+            return "";
+            break;                
+    }
+}
 function getname($i)
 {
     if ($i==1)
@@ -470,6 +487,13 @@ $('#myCarousel').carousel({
    <a href="<?php echo URL;?>message/upload" class="list-group-item">
       <p class="list-group-item-text">
          &nbsp;&nbsp;&nbsp;发布消息
+      </p>
+   </a>
+   <?php }?>
+   <?php if (isset($_SESSION['type']) && $_SESSION['type']=='1'){?>
+   <a href="<?php echo URL;?>message/massemail" class="list-group-item">
+      <p class="list-group-item-text">
+         &nbsp;&nbsp;&nbsp;群发邮件
       </p>
    </a>
    <?php }?>

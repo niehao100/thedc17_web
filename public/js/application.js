@@ -413,6 +413,30 @@ $(document).ready(function() {
         }
 	});
 	
+	$('#massemail').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	emaildecription:{
+                validators: {
+                    notEmpty: {
+                        message: '邮件主题不能为空'
+                    }
+                }
+            },
+            inputtext:{
+            	validators: {
+                    notEmpty: {
+                        message: '内容不能为空'
+                    }
+                }
+            }
+        }
+	});
 	
     $('#registerform').bootstrapValidator({
         message: 'This value is not valid',

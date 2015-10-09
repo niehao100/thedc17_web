@@ -64,7 +64,8 @@ if (isset($_SESSION['login']) && $_SESSION['login']==true){
       <label  for="inputtext" class="col-sm-2 control-label">内容</label>
     <div class="col-sm-10">
       <textarea id="inputtext" class="form-control" rows="5" name="inputtext" placeholder="支持Markdown语法"></textarea></div>
-</div>
+<a class="pull-right" target="_blank" href="http://markdown.pioul.fr/">在线编辑</a>
+      </div>
    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
          <button type="submit" id="messagesubmit" class="btn btn-default">发布</button>

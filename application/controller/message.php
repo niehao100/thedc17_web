@@ -14,11 +14,51 @@ class Message extends Controller
     }
     public function upload()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
+        if ($_SESSION['type']=='1')
+        {
         require APP . 'view/_templates/header.php';
         require APP . 'view/message/upload.php';
         require APP . 'view/_templates/middle.php';
         require APP . 'view/message/upload.php';
         require APP . 'view/_templates/footer.php';
+        }else{
+            header("location:".URL);
+        }
+    }
+    public function email()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
+        if ($_SESSION['type']=='1')
+        {
+            $this->messagemodel->massemail();
+            header("location:".URL."message/massemail");
+        }else{
+            header("location:".URL);
+        }
+    }
+    public function massemail()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
+        if ($_SESSION['type']=='1')
+        {
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/message/massemail.php';
+            require APP . 'view/_templates/middle.php';
+            require APP . 'view/message/massemail.php';
+            require APP . 'view/_templates/footer.php';
+        }else{
+            header("location:".URL);
+        }
     }
     public function listitem($mess_id)
     {

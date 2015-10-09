@@ -66,7 +66,8 @@ class Group extends Controller
             }
             $res=$this->groupmodel->listall();
             $mem=$this->groupmodel->getgroupmember();
-        
+            $name=$this->groupmodel->getgroupname();
+            $type=$this->groupmodel->getgrouptype();
             $myreq=$this->groupmodel->listmyreq();
             $req=$this->groupmodel->getrequest();
             require APP . 'view/_templates/header.php';
@@ -79,6 +80,13 @@ class Group extends Controller
             return ;
         }
         
+    }
+    public function changegrouptype(){
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $this->groupmodel->changegrouptype();
+        header("location:".URL."group/managegroup");
     }
     public function listall(){
         if (!isset($_SESSION)) {
