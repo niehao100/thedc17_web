@@ -6,13 +6,13 @@
 </div>
 
 <div id="myCarouse2" class="carousel slide">
-   <!-- 轮播（Carousel）指标 -->
+   
    <ol class="carousel-indicators">
    <?php for ($i=1;;$i++){if (file_exists("img/slide".$i.".jpg")){?>
       <li data-target="#myCarouse2" data-slide-to="<?php echo $i-1;?>" <?php if ($i==1){?>class="active"<?php }?>></li>
    <?php }else{break;}}?>
    </ol>   
-   <!-- 轮播（Carousel）项目 -->
+   
    <div class="carousel-inner">
    <?php for ($i=1;;$i++){if (file_exists("img/slide".$i.".jpg")){?>
       <div class="item<?php if ($i==1){?> active<?php }?>">
@@ -20,16 +20,38 @@
       </div>
    <?php }else{break;}}?>
    </div>
-   <!-- 轮播（Carousel）导航 -->
+   
    <a class="left carousel-control" href="#myCarouse2" data-slide="prev">
  <span class="glyphicon glyphicon-chevron-left"></span></a>
  <a class="right carousel-control" href="#myCarouse2" data-slide="next">
  <span class="glyphicon glyphicon-chevron-right"></span></a>
 </div> 
 <script type="text/javascript">
+$('#myCarouse2').hide();
 $('#myCarouse2').carousel({
   interval: 4000
 })
+</script>
+
+<video id="video1" controls="controls" autoplay="autoplay" width="100%" >
+  <source src="<?php echo URL."img/".(string)(mt_rand()%2+1)?>.mp4" type="video/mp4" />
+您的浏览器暂不支持播放视频，请更换浏览器。
+</video>
+
+<script type="text/javascript">
+
+if (!(document.createElement('video').canPlayType))
+{
+	$('#video1').hide();
+	$('#myCarouse2').carousel(0);
+	$('#myCarouse2').show();
+}
+document.getElementById("video1").volume=0.1;
+$("#video1").bind("ended", function(event) { 
+	$("#video1").hide();
+	$('#myCarouse2').carousel(0);
+	$('#myCarouse2').fadeIn(2000);
+	});
 
 </script>
 <br>
