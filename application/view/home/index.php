@@ -7,50 +7,76 @@
 
 <div id="myCarouse2" class="carousel slide">
    
-   <ol class="carousel-indicators">
+   <ol class="carousel-indicators" id="carlist">
+   <li data-target="#myCarouse2" data-slide-to="0" class="active"></li>
    <?php for ($i=1;;$i++){if (file_exists("img/slide".$i.".jpg")){?>
-      <li data-target="#myCarouse2" data-slide-to="<?php echo $i-1;?>" <?php if ($i==1){?>class="active"<?php }?>></li>
+      <li data-target="#myCarouse2" data-slide-to="<?php echo $i;?>" <?php if ($i==0){?>class="active"<?php }?>></li>
    <?php }else{break;}}?>
    </ol>   
-   
    <div class="carousel-inner">
+   <div class="item active">
+         <video id="video1" width="100%" >
+  <source src="<?php echo URL."img/".(string)(mt_rand()%2+1)?>.mp4" type="video/mp4" />
+您的浏览器暂不支持播放视频，请更换浏览器。
+</video>
+      </div>
+      
+   
    <?php for ($i=1;;$i++){if (file_exists("img/slide".$i.".jpg")){?>
-      <div class="item<?php if ($i==1){?> active<?php }?>">
+      <div class="item">
          <img src="<?php echo URL."img/slide".$i.".jpg?".mt_rand();?>" alt="A slide">
       </div>
    <?php }else{break;}}?>
+   
    </div>
    
-   <a class="left carousel-control" href="#myCarouse2" data-slide="prev">
+   <a class="left carousel-control" id="prev" href="#myCarouse2" data-slide="prev">
  <span class="glyphicon glyphicon-chevron-left"></span></a>
- <a class="right carousel-control" href="#myCarouse2" data-slide="next">
+ <a class="right carousel-control" id="next" href="#myCarouse2" data-slide="next">
  <span class="glyphicon glyphicon-chevron-right"></span></a>
 </div> 
 <script type="text/javascript">
-$('#myCarouse2').hide();
+//$('#myCarouse2').hide();
 $('#myCarouse2').carousel({
   interval: 4000
 })
 </script>
 
-<video id="video1" controls="controls" autoplay="autoplay" width="100%" >
-  <source src="<?php echo URL."img/".(string)(mt_rand()%2+1)?>.mp4" type="video/mp4" />
-您的浏览器暂不支持播放视频，请更换浏览器。
-</video>
 
 <script type="text/javascript">
 
-if (!(document.createElement('video').canPlayType))
-{
-	$('#video1').hide();
-	$('#myCarouse2').carousel(0);
-	$('#myCarouse2').show();
-}
-document.getElementById("video1").volume=0.1;
+var myVideo=document.getElementById("video1");
+
+myVideo.volume=0.1;
+
+$("#video1").click(function() { 
+	var myVideo=document.getElementById("video1");
+	if (myVideo.paused) 
+	{
+		  $("#myCarouse2").carousel('pause');
+		  $("#prev").hide();
+		  $("#next").hide();
+		  $("#carlist").hide();
+		  myVideo.play(); 
+	}
+		else 
+		{
+			$("#prev").show();
+			  $("#next").show();
+			  $("#carlist").show();
+			$("#myCarouse2").carousel('cycle');
+		  myVideo.pause(); 
+		}
+});
+
 $("#video1").bind("ended", function(event) { 
-	$("#video1").hide();
-	$('#myCarouse2').carousel(0);
-	$('#myCarouse2').fadeIn(2000);
+
+	var myVideo=document.getElementById("video1");
+	myVideo.currentTime=0;
+	$("#prev").show();
+	$("#next").show();
+	$("#carlist").show();
+	$("#myCarouse2").carousel('cycle');
 	});
 
 </script>
