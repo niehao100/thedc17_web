@@ -57,6 +57,7 @@ $("#video1").click(function() {
 		  $("#prev").hide();
 		  $("#next").hide();
 		  $("#carlist").hide();
+		  myVideo.controls="controls";
 		  myVideo.play(); 
 	}
 		else 
@@ -64,6 +65,7 @@ $("#video1").click(function() {
 			$("#prev").show();
 			  $("#next").show();
 			  $("#carlist").show();
+			  myVideo.controls="";
 			$("#myCarouse2").carousel('cycle');
 		  myVideo.pause(); 
 		}
@@ -76,9 +78,25 @@ $("#video1").bind("ended", function(event) {
 	$("#prev").show();
 	$("#next").show();
 	$("#carlist").show();
+	myVideo.controls="";
 	$("#myCarouse2").carousel('cycle');
 	});
+$("#video1").bind("pause", function(event) { 
 
+	$("#prev").show();
+	  $("#next").show();
+	  $("#carlist").show();
+	  myVideo.controls="";
+	$("#myCarouse2").carousel('cycle');
+	});
+$("#video1").bind("play", function(event) { 
+
+	$("#myCarouse2").carousel('pause');
+	  $("#prev").hide();
+	  $("#next").hide();
+	  $("#carlist").hide();
+	  myVideo.controls="controls";
+	});
 </script>
 <br>
 <div class="col-sm-4 col-md-4 col-lg-4 ">
