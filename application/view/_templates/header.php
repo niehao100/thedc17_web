@@ -6,15 +6,15 @@
     <meta name="description" content="thedc17">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
-    <link href="http://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
-     <link href="<?php echo URL; ?>css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/bootstrap-select.min.css" rel="stylesheet">
      
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"></script>
+    <script src="<?php echo URL; ?>js/jquery.min.js"></script>
+    <script src="<?php echo URL; ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo URL; ?>js/bootstrapValidator.min.js"></script>
+    <script src="<?php echo URL; ?>js/language/zh_CN.min.js"></script>
     <script src="<?php echo URL; ?>js/application.js" charset="utf-8"></script>
     <script src="<?php echo URL; ?>js/bootstrap-select.min.js" charset="utf-8"></script>
     
