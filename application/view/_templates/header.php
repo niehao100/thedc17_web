@@ -20,17 +20,7 @@
     
 </head>
 <body> 
-<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8" charset="utf-8"></script> 
-<script>
-var rootpath3="http://"+location.hostname+"";
-$.post(rootpath3+'/user/ipstatistic',
-		  {
-		    ip:returnCitySN.cip,
-		    city:returnCitySN.cname,
-		  },
-		  function(data,status){});
 
-</script>
 <?php
 require_once APP . 'controller/Parsedown.php';
 if (!isset($_SESSION)) {
@@ -129,8 +119,9 @@ function getname($i)
               <li><a href="<?php echo URL."intro/hardware"?>">电设概况</a></li>
             </ul>
          </li>
-         
+         <?php if (enablejoin==1){?>
          <li><a data-toggle="modal" href="#registermodal">注册</a></li>
+         <?php }?>
          <li><a data-toggle="modal" href="#loginmodal">登录</a></li>
       </ul>
 <?php }else {?>
@@ -584,7 +575,7 @@ $('#myCarousel').carousel({
   <?php if (!isset($_SESSION['login']) || $_SESSION['login']!=true){?>
     <div class="hidden-xs col-sm-12 col-lg-12 " >
   <?php }else{?>
-    <div class="hidden-xs col-sm-8 col-lg-8" >
+    <div class="hidden-xs col-sm-9 col-lg-9" >
     
     <?php }?>
         

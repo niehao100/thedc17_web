@@ -94,14 +94,9 @@ class Group extends Controller
         }
         if (!isset($_SESSION['login']) || $_SESSION['login']==false)
         {
-            $res=$this->groupmodel->listall();
-            $mem=$this->groupmodel->getgroupmember();
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/group/grouplist2.php';
-            require APP . 'view/_templates/middle.php';
-            require APP . 'view/group/grouplist2.php';
-            require APP . 'view/_templates/footer.php';
-            return ;
+            header("location:".URL);
+            return;
+            
         }
         $res=$this->groupmodel->listall();
         $mem=$this->groupmodel->getgroupmember();

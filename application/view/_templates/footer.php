@@ -58,5 +58,17 @@ if(!isset($_SESSION['totalguest']))
 ?>
     <br>designed by 电设网站组 <a href="http://www.zerouav.com/" target="_blank"><img  src="<?php echo URL."img/zerotech.jpg"?>" style="margin-bottom:4px; width:130px;"></a></div>
 
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8" charset="utf-8"></script> 
+<script>
+var rootpath3="http://"+location.hostname+"";
+$.post(rootpath3+'/user/ipstatistic',
+		  {
+		    ip:returnCitySN.cip,
+		    city:returnCitySN.cname,
+		  },
+		  function(data,status){});
+
+</script>
+
     </body>
 </html>

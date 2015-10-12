@@ -32,13 +32,16 @@
          <td>队员</td>
     </tr>
       <?php }}?>
+      <?php if (enablejoin==1){?>
    <?php 
    for($i=0;$i<count($req);++$i){ if ($req[$i][2]=='0'){?>
    <tr>
          <td><?php echo $curnum++;?></td>
          <td><?php echo $req[$i][0];?></td>
          <td><?php echo $req[$i][1];?></td>
+         
          <td><a href="<?php echo URL."group/approverequest/".$req[$i][0];?>">批准加入</a></td>
+
     </tr>
       <?php }}?>
    <?php 
@@ -50,6 +53,7 @@
          <td>申请取消</td>
     </tr>
       <?php }}?>
+      <?php }?>
    </tbody>
 </table>
 </div>

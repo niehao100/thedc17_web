@@ -9,7 +9,9 @@
          <th>队长</th>
          <th>队员</th>
          <th>口号</th>
-         <?php if (!$ismember && !$isleader){echo "<th>操作</th>";}else{echo "<th>状态</th>";}?>
+         <?php if (enablejoin==1){?>
+         <?php if (!$ismember && !$isleader ){echo "<th>操作</th>";}else{echo "<th>状态</th>";}?>
+            <?php }?>
       </tr>
    </thead>
     <tbody>
@@ -19,9 +21,9 @@
          <td><?php echo "同志们辛苦了";?></td>
          <td><?php echo "";?></td>
          <td><?php echo "neil";?></td>
-         <td><?php echo "xumy13,路过打酱油的,wengzhe,ILT";?></td>
+         <td><?php echo "xumy13,路过打酱油的,wengzhe,ILT,wyh";?></td>
          <td><?php echo "为人民服务！";?></td>
-         <?php echo "<td></td>";?>
+         <?php if (enablejoin==1){echo "<td></td>";}?>
    </tr>
 
    
@@ -35,6 +37,7 @@
          <td><?php echo $res[$i]['group_leader'];?></td>
          <td><?php echo $mem[$i];?></td>
          <td><?php echo $res[$i]['group_chant'];?></td>
+         <?php if (enablejoin==1){?>
          <?php 
          if ($res[$i]['group_valid']=='0'){?>
              
@@ -69,14 +72,16 @@
                 <?php
             }
          ?>
+
 </tr>
       <?php }else {
             echo "<td></td>";}
+}
 }}?>
    </tbody>
 </table>
 </div>
-
+<?php if (enablejoin==1){?>
 <?php if (!$ismember && !$isleader){if (isset($myreq) && $myreq!=null){?>
 <fieldset > 
 <legend>创建队伍</legend>
@@ -142,4 +147,4 @@
 
    </fieldset>
 
-<?php }}?>
+<?php }}}?>

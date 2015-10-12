@@ -49,7 +49,9 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 define('pretime',6);
 define('maxmember', 4);
 define('openpre',0);
+define('enablejoin',1);
 define('maxwrong',3);
+
 /**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
