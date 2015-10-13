@@ -5,6 +5,23 @@
 <p>QQ交流群203207704</p>
 </div>
 
+<script type="text/javascript">
+    function getRTime(){
+        var EndTime= new Date('2013/05/1 10:00:00'); //截止时间 前端路上 http://www.51xuediannao.com/qd63/
+        var NowTime = new Date();
+        var t =EndTime.getTime() - NowTime.getTime();
+        var d=Math.floor(t/1000/60/60/24);
+        var h=Math.floor(t/1000/60/60%24);
+        var m=Math.floor(t/1000/60%60);
+        var s=Math.floor(t/1000%60);
+
+        document.getElementById("t_d").innerHTML = d + "天";
+        document.getElementById("t_h").innerHTML = h + "时";
+        document.getElementById("t_m").innerHTML = m + "分";
+        document.getElementById("t_s").innerHTML = s + "秒";
+    }
+    setInterval(getRTime,1000);
+    </script>
 <div id="myCarouse2" class="carousel slide">
    
    <ol class="carousel-indicators" id="carlist">

@@ -376,7 +376,52 @@ function getname($i)
 
 <div class="container">
    <div class="row" >
+<?php 
+date_default_timezone_set("Asia/Hong_Kong");
+$endtime = mktime(0,0,0,10,14,2015);
+$nowtime = time();
+if ($nowtime<$endtime){
+    $h=(($endtime-$nowtime)/3600)%24;
+    $m=(($endtime-$nowtime)/60)%60;
+    $s=(($endtime-$nowtime))%60;
+ ?>   
+<div class="alert alert-danger alert-dismissable" style="text-align: center;">
+   <button type="button" class="close" data-dismiss="alert" 
+      aria-hidden="true">
+      &times;
+   </button>
+   <span id="ddl" style="font-size:15px;"><?php echo "距离报名截止还有".(string)$h ."时".(string)$m."分".(string)$s."秒";?></span>
+</div>
 
+ <script type="text/javascript">
+    var flag=0;
+    var dev=0;
+    function getRTime(){
+        var EndTime= new Date('2015/10/14 00:00:00');
+        var NowTime = new Date();
+        var t =EndTime.getTime() - NowTime.getTime();
+        if (flag==0)
+        {
+            flag=1;
+            dev=t-(<?php echo 1000*($endtime-$nowtime);?>);
+        }
+        var h=Math.floor((t-dev)/1000/60/60%24);
+        var m=Math.floor((t-dev)/1000/60%60);
+        var s=Math.floor((t-dev)/1000%60);
+
+        document.getElementById("ddl").innerHTML = "距离报名截止还有"+h + "时"+m+"分"+s+"秒";
+        if (t-dev<=0)
+        {
+        	window.location.href=window.location.href;
+        }
+    }
+    setInterval(getRTime,1000);
+    </script>
+ 
+<?php 
+}
+?>
+    
 <div class="hidden" id="myCarouse3">
    <div id="myCarousel" class="carousel slide">
    <!-- 轮播（Carousel）指标 -->
