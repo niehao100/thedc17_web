@@ -24,7 +24,7 @@
 <div class="panel panel-success">
    <div class="panel-heading">
       <span class="panel-title">主题：<?php echo handlestr2($sub['forum_title']);?></span>
-      <span class="panel-title pull-right"><?php echo "<i>".$sub['forum_owner']."</i>发表于".date('m-d H:i',strtotime($sub['forum_estab']))?></span>
+      <span class="panel-title pull-right"><?php echo "<i>".$sub['forum_owner']."</i>发表于".date('m-d H:i',strtotime($sub['forum_estab']."+8 hour"))?></span>
    </div>
    <div class="panel-body"><h4>
 <?php echo handlestr($sub['forum_content']);?>
@@ -41,7 +41,7 @@
 </h4>
    </div>
    <div class="panel-footer pull-right">
-   <?php echo "<i>".$res[$i]['thread_owner']."</i>发表于".date('m-d H:i',strtotime($res[$i]['thread_estab']))?>
+   <?php echo "<i>".$res[$i]['thread_owner']."</i>发表于".date('m-d H:i',strtotime($res[$i]['thread_estab']."+8 hour"))?>
    </div>
 
    </div>

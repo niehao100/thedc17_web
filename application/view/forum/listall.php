@@ -22,14 +22,14 @@
 <div class="panel panel-success">
    <div class="panel-heading">
       <span class="panel-title"><a href="<?php echo URL."forum/thread/".$res[$i]['forum_id'];?>">主题：<?php echo $res[$i]['forum_title'];?></a></span>
-      <span class="panel-title pull-right"><?php echo "<i>".$res[$i]['forum_owner']."</i>发表于".date('m-d H:i',strtotime($res[$i]['forum_estab']))?></span>
+      <span class="panel-title pull-right"><?php echo "<i>".$res[$i]['forum_owner']."</i>发表于".date('m-d H:i',strtotime($res[$i]['forum_estab']."+8 hour"))?></span>
    </div>
    <div class="panel-body"><h4>
 <?php echo handlestr($res[$i]['forum_content']);?>
 </h4>
    </div>
    <?php if ($numtotal[$i]>0){?>
-   <div class="panel-footer pull-right"><?php echo "共".$numtotal[$i]."条回复。".$lastest[$i][0]."最新回复于".date('m-d H:i',strtotime($lastest[$i][1]));?></div>
+   <div class="panel-footer pull-right"><?php echo "共".$numtotal[$i]."条回复。".$lastest[$i][0]."最新回复于".date('m-d H:i',strtotime($lastest[$i][1]."+8 hour"));?></div>
    <?php }else{?>
    <div class="panel-footer pull-right"><?php echo "暂无回复。"?></div>
    <?php }?>

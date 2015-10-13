@@ -19,7 +19,7 @@
          <td><a title="说明" data-container="body" data-toggle="popover" data-placement="top"  
       data-content="<?php echo $res[$i]['file_comment'];?>" data-trigger='hover' href="<?php echo URL."file/download/".$res[$i]['file_name']?>"><?php echo substr($res[$i]['file_name'], stripos($res[$i]['file_name'],"_")+1);?></a></td>
          <td><?php echo number_format($res[$i]['file_size']/1024/1024,1);echo "MB";?></td>
-         <td><?php echo date('m-d H:i',strtotime($res[$i]['file_uploadtime']));?></td>
+         <td><?php echo date('m-d H:i',strtotime($res[$i]['file_uploadtime']."+8 hour"));?></td>
          <?php if (isset($_SESSION['username']) &&$_SESSION['username']==$res[$i]['file_owner']){?>
             <td><a href="<?php echo URL."file/delete/".$res[$i]['file_name'];?>">删除</a></td>
          <?php }elseif(isset($_SESSION['type']) && $_SESSION['type']=='1'){?>

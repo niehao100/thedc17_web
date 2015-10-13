@@ -7,5 +7,5 @@
    <div class="panel-body">
       <?php echo handlestr($res['mess_content']);?>
    </div>
-   <div class="panel-footer pull-right"><?php echo "<i>".$res['mess_owner']."</i>发布于".date('Y-m-d H:i:s',strtotime($res['mess_uploadtime']));?></div>
+   <div class="panel-footer pull-right"><?php echo "<i>".$res['mess_owner']."</i>发布于".date('Y-m-d H:i:s',strtotime($res['mess_uploadtime']."+8 hour"));?></div>
 </div>
