@@ -8,6 +8,7 @@
          <th>#</th>
          <th>昵称</th>
          <th>真实姓名</th>
+         <th>联系方式</th>
          <th>状态</th>
       </tr>
    </thead>
@@ -19,6 +20,7 @@
          <td><?php echo $curnum++;?></td>
          <td><?php echo $req[$i][0];?></td>
          <td><?php echo $req[$i][1];?></td>
+         <td><?php echo $req[$i][3];?></td>
          <td>队长</td>
     </tr>
       <?php }}?>
@@ -29,6 +31,7 @@
          <td><?php echo $curnum++;?></td>
          <td><?php echo $req[$i][0];?></td>
          <td><?php echo $req[$i][1];?></td>
+         <td><?php echo $req[$i][3];?></td>
          <td>队员</td>
     </tr>
       <?php }}?>
@@ -39,7 +42,7 @@
          <td><?php echo $curnum++;?></td>
          <td><?php echo $req[$i][0];?></td>
          <td><?php echo $req[$i][1];?></td>
-         
+         <td><?php echo $req[$i][3];?></td>
          <td><a href="<?php echo URL."group/approverequest/".$req[$i][0];?>">批准加入</a></td>
 
     </tr>
@@ -50,6 +53,7 @@
          <td><?php echo $curnum++;?></td>
          <td><?php echo $req[$i][0];?></td>
          <td><?php echo $req[$i][1];?></td>
+         <td></td>
          <td>申请取消</td>
     </tr>
       <?php }}?>
@@ -70,6 +74,7 @@
          <th>#</th>
          <th>昵称</th>
          <th>真实姓名</th>
+         <th>联系方式</th>
          <th>身份</th>
       </tr>
    </thead>
@@ -81,6 +86,7 @@
          <td><?php echo $curnum++;?></td>
          <td><?php echo $req[$i][0];?></td>
          <td><?php echo $req[$i][1];?></td>
+         <td><?php echo $req[$i][3];?></td>
          <td>队长</td>
     </tr>
       <?php }}?>
@@ -91,6 +97,7 @@
          <td><?php echo $curnum++;?></td>
          <td><?php echo $req[$i][0];?></td>
          <td><?php echo $req[$i][1];?></td>
+         <td><?php echo $req[$i][3];?></td>
          <td>队员</td>
     </tr>
       <?php }}?>

@@ -112,7 +112,32 @@ class Group extends Controller
         require APP . 'view/_templates/footer.php';
 
     }
-    
+    public function getinfo()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!isset($_SESSION['login']) || $_SESSION['login']==false)
+        {
+            header("location:".URL);
+            return;
+        }
+        if ($_SESSION['type']=='1')
+        {
+            $res=$this->groupmodel->listall2();
+            $mem=$this->groupmodel->getgroupmember2();
+
+            
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/group/grouplist2.php';
+            require APP . 'view/_templates/middle.php';
+            require APP . 'view/group/grouplist2.php';
+            require APP . 'view/_templates/footer.php';
+        }else{
+            header("location:".URL);
+        }
+        
+    }
     public function settime()
     {
         if (openpre==1)

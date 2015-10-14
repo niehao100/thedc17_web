@@ -107,7 +107,7 @@ class groupModel
         }else{
             return;
         }
-        $sql = "select group_req.req_owner,user.user_realname,group_req.req_status from group_req left join user on group_req.req_owner=user.user_nickname where req_groupid=:id ";
+        $sql = "select group_req.req_owner,user.user_realname,group_req.req_status,user.user_phone from group_req left join user on group_req.req_owner=user.user_nickname where req_groupid=:id ";
         
         $parameters = array(":id" => $res);
         $query = $this->db->prepare($sql);
@@ -268,6 +268,13 @@ class groupModel
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function listall2()
+    {
+        $sql = "select * from groups left join user on groups.group_leader=user.user_nickname order by group_name asc";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getgroupmember(){
         $sql = "select * from groups order by group_name asc";
         $query = $this->db->prepare($sql);
@@ -297,5 +304,33 @@ class groupModel
         }
         return $m;
     }
-    
+    public function getgroupmember2(){
+        $sql = "select * from groups order by group_name asc";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        $res=$query->fetchAll(PDO::FETCH_ASSOC);
+        if (!isset($res) || $res==null || count($res)==0)
+        {
+            return null;
+        }
+        for ($i=0;$i<count($res);++$i)
+        {
+            $sql = "select user_realname from group_req left join user on group_req.req_owner=user.user_nickname where req_groupid=:id and req_status=1";
+            $parameters = array(':id' => $res[$i]['group_id']);
+            $query = $this->db->prepare($sql);
+            $query->execute($parameters);
+            $res2=$query->fetchAll(PDO::FETCH_NUM);
+            if (!isset($res2) || $res2==null || count($res2)==0)
+            {
+                $m[$i]="暂无队员";
+            }else{
+                $m[$i]=$res2[0][0];
+                for ($j=1;$j<count($res2);++$j)
+                {
+                    $m[$i]=$m[$i].','.$res2[$j][0];
+                }
+            }
+        }
+        return $m;
+    }
 }
