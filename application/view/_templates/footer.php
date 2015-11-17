@@ -10,11 +10,13 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$filename=ROOT . 'public' . DIRECTORY_SEPARATOR."counter.dat";
 if(!isset($_SESSION['totalguest']))
 {
     $_SESSION['totalguest'] = true;
-    $filename="counter.dat";
     
+    
+    //require APP . 'view/_templates/header.php';
     if (file_exists($filename))
     {
         $counter = json_decode(file_get_contents($filename),true);
@@ -44,7 +46,7 @@ if(!isset($_SESSION['totalguest']))
         echo "总访问量：".$total."&nbsp;今日访问量：".$today;
     }
 }else{
-    $filename="counter.dat";
+
     if (file_exists($filename))
     {
         $counter = json_decode(file_get_contents($filename),true);

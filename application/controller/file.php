@@ -60,7 +60,7 @@ class File extends Controller
            header("location:".URL);
             return ;
         }
-        header("Content-type:text/html;charset=utf-8");
+        //header("Content-type:text/html;charset=utf-8");
         $fp=fopen($file_path,"r");
         $file_size=filesize($file_path);
         //下载文件需要用到的头

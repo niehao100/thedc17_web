@@ -68,6 +68,7 @@ class Group extends Controller
             $mem=$this->groupmodel->getgroupmember();
             $name=$this->groupmodel->getgroupname();
             $type=$this->groupmodel->getgrouptype();
+            $groupid=$this->groupmodel->getgroupid();
             $myreq=$this->groupmodel->listmyreq();
             $req=$this->groupmodel->getrequest();
             require APP . 'view/_templates/header.php';

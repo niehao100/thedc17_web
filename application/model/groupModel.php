@@ -235,6 +235,18 @@ class groupModel
     
         return $query->fetch(PDO::FETCH_NUM)[0];
     }
+    public function getgroupid()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $sql = "select req_groupid from group_req where req_owner=:name and (req_status=1 or req_status=3)";
+        $parameters = array(':name' => $_SESSION['username']);
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+    
+        return $query->fetch(PDO::FETCH_NUM)[0];
+    }
     public function getgroupinfo()
     {
         if (!isset($_SESSION)) {
@@ -322,7 +334,7 @@ class groupModel
             $res2=$query->fetchAll(PDO::FETCH_NUM);
             if (!isset($res2) || $res2==null || count($res2)==0)
             {
-                $m[$i]="暂无队员";
+                $m[$i]="";
             }else{
                 $m[$i]=$res2[0][0];
                 for ($j=1;$j<count($res2);++$j)

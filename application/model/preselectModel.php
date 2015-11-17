@@ -31,7 +31,7 @@ class preselectModel
         $filename="time.dat";
         $fp = fopen($filename, 'w');
         $str=array();
-        for ($i=0;$i<30;$i++)
+        for ($i=0;$i<70;$i++)
         {
             $str[$i]="";
         }
@@ -40,11 +40,17 @@ class preselectModel
     }
     public function gettime($n)
     {
-        if ($n<30)
+        if ($n<35)
         {
-            $t1=mktime(9,0,0,10,10,2015);
+            $t1=mktime(8,30,0,11,22,2015);
             $t=$t1+$n*pretime*60;
             return date("H:i",$t)." ~ ".date("H:i",$t+pretime*60);
+        }else if($n<70)
+        {
+            $n=$n-35;
+            $t2=mktime(14,0,0,11,22,2015);
+            $t3=$t2+$n*pretime*60;
+            return date("H:i",$t3)." ~ ".date("H:i",$t3+pretime*60);
         }
     }
     public function getalltime()

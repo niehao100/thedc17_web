@@ -48,7 +48,7 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 
 define('pretime',6);
 define('maxmember', 4);
-define('openpre',0);
+define('openpre',1);
 define('enablejoin',0);
 define('maxwrong',3);
 
